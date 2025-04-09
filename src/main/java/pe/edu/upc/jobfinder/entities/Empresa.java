@@ -10,4 +10,6 @@ public class Empresa {
     private int idEmpresa;
     @Column(name = "name", nullable = false, length = 20)
     private int name;
+    @Column(name = "description", nullable = false, length = 100)
+    private String description;
 }
