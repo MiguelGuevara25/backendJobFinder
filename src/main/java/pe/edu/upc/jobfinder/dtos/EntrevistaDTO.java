@@ -9,4 +9,7 @@ public class EntrevistaDTO {
     private LocalTime hour;
     private String modality;
     private String result;
+
+    //private Usuario usuario;
+    //private Postulacion postulacion;
 }
