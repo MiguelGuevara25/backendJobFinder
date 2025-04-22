@@ -4,7 +4,7 @@ package pe.edu.upc.jobfinder.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Usuairio")
+@Table(name = "Usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

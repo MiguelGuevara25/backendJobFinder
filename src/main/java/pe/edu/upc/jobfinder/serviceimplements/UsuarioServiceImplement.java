@@ -17,4 +17,24 @@ public class UsuarioServiceImplement implements IUsuarioService{
     public List<Usuario> listar() {
         return usuarioRepository.findAll();
     }
+
+    @Override
+    public void insertar(Usuario usuario) {
+        usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public Usuario buscarID(int idUsuario) {
+        return usuarioRepository.findById(idUsuario).orElse(new Usuario());
+    }
+
+    @Override
+    public void modificar(Usuario usuario) {
+        usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public void eliminar(int idUsuario) {
+        usuarioRepository.deleteById(idUsuario);
+    }
 }
