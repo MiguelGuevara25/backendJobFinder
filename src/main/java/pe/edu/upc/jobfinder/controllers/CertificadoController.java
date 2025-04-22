@@ -34,6 +34,7 @@ public class CertificadoController {
         Certificado c=m.map(certificadoDTO,Certificado.class);
         cS.modificar(c);
     }
+    @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int idC) {
         cS.eliminar(idC);
     }
