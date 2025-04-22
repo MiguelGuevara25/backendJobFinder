@@ -16,4 +16,19 @@ public class CertificadoServiceImplement implements ICertificadoService {
     public List<Certificado> listar() {
         return cR.findAll();
     }
+
+    @Override
+    public void insertar(Certificado certificado) {
+        cR.save(certificado);
+    }
+
+    @Override
+    public void modificar(Certificado certificado) {
+        cR.save(certificado);
+    }
+
+    @Override
+    public void eliminar(int idCertificado) {
+        cR.deleteById(idCertificado);
+    }
 }
