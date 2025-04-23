@@ -27,4 +27,9 @@ public class HabilidadServiceImplement implements IHabilidadService {
     public Habilidad searchId(int id) {
         return hR.findById(id).orElse(new Habilidad());
     }
+
+    @Override
+    public void update(Habilidad h) {
+        hR.save(h);
+    }
 }

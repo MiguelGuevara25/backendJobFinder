@@ -18,21 +18,30 @@ public class HabilidadController {
 
     @GetMapping
     public List<HabilidadDTO> listar() {
-        return hS.list().stream().map(x ->{
+        return hS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, HabilidadDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping
     public void insertar(@RequestBody HabilidadDTO dto) {
         ModelMapper m = new ModelMapper();
         Habilidad h = m.map(dto, Habilidad.class);
         hS.insert(h);
     }
+
     @GetMapping("/{id}")
-    public HabilidadDTO listarId(@PathVariable("id") int id){
+    public HabilidadDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         HabilidadDTO dto = m.map(hS.searchId(id), HabilidadDTO.class);
         return dto;
+    }
+
+    @PutMapping
+    public void modificar(@RequestBody HabilidadDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Habilidad h = m.map(dto, Habilidad.class);
+        hS.update(h);
     }
 }
