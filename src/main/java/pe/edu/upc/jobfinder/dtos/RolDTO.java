@@ -1,29 +1,14 @@
-package pe.edu.upc.jobfinder.entities;
+package pe.edu.upc.jobfinder.dtos;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import pe.edu.upc.jobfinder.entities.Usuario;
 
-@Entity
-@Table(name = "Rol")
-public class Rol {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RolDTO {
+
     private int idRol;
-
-    @Column(name = "nombre", nullable = false,length = 250)
     private String nombreRol;
-
-    @ManyToOne
-    @JoinColumn(name = "usuario")
     public Usuario usuarioRol;
-
-    public Rol() {
-    }
-
-    public Rol(int idRol, String nombreRol, Usuario usuarioRol) {
-        this.idRol = idRol;
-        this.nombreRol = nombreRol;
-        this.usuarioRol = usuarioRol;
-    }
 
     public int getIdRol() {
         return idRol;
