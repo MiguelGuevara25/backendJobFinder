@@ -14,9 +14,7 @@ public class EmpresaServiceImplement implements IEmpresaService {
     private IEmpresaRepository eR;
 
     @Override
-    public List<Empresa> list() {
-        return eR.findAll();
-    }
+    public List<Empresa> list() {return eR.findAll();}
 
     @Override
     public void insert(Empresa empresa) {
@@ -25,8 +23,7 @@ public class EmpresaServiceImplement implements IEmpresaService {
 
     @Override
     public Empresa searchId(int id) {
-        return eR.findById(id).orElse(new Empresa());
-    }
+        return eR.findById(id).orElse(new Empresa());}
 
     @Override
     public void update(Empresa empresa) {
@@ -36,10 +33,5 @@ public class EmpresaServiceImplement implements IEmpresaService {
     @Override
     public void delete(int id) {
         eR.deleteById(id);
-    }
-
-    @Override
-    public List<Empresa> search(String name) {
-        return List.of();
     }
 }
