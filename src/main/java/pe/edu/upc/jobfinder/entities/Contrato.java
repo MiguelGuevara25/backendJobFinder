@@ -19,9 +19,13 @@ public class Contrato {
     @Column(name = "contractType", nullable = false, length = 100)
     private String contractType;
 
-    //private Usuario usuarios;
-    //private Postulacion postulacion;
-    //@ManyToOne
-    //@JoinColumn(name = "id")
-    //private Empresa empresa;
+    @OneToOne
+    @JoinColumn(name = "idUsuarios")
+    private Usuario usuarios;
+    @OneToOne
+    @JoinColumn(name = "idPostulacion")
+    private Postulacion postulacion;
+    @ManyToOne
+    @JoinColumn(name = "idEmpresa")
+    private Empresa empresa;
 }
