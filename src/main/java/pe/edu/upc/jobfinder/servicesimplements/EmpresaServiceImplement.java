@@ -37,4 +37,9 @@ public class EmpresaServiceImplement implements IEmpresaService {
     public void delete(int id) {
         eR.deleteById(id);
     }
+
+    @Override
+    public List<Empresa> search(String name) {
+        return List.of();
+    }
 }
