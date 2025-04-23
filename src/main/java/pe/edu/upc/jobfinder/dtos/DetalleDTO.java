@@ -1,42 +1,19 @@
-package pe.edu.upc.jobfinder.entities;
+package pe.edu.upc.jobfinder.dtos;
 
 import jakarta.persistence.*;
+import pe.edu.upc.jobfinder.entities.Curriculum;
+import pe.edu.upc.jobfinder.entities.Estudio;
+import pe.edu.upc.jobfinder.entities.Experiencia;
+import pe.edu.upc.jobfinder.entities.Habilidad;
 
-@Entity
-@Table(name = "Detalle")
-public class Detalle {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DetalleDTO {
     private int id;
-
-    @ManyToOne
-    @JoinColumn(name = "idExperiencia")
     private Experiencia experiencias;
-
-    @ManyToOne
-    @JoinColumn(name = "idEstudio")
     private Estudio estudios;
-
-    @ManyToOne
-    @JoinColumn(name = "idHabilidad")
     private Habilidad habilidades;
-
-    @ManyToOne
-    @JoinColumn(name = "idCurriculum")
     private Curriculum curriculums;
     //private Certificado certificados;
 
-
-    public Detalle() {
-    }
-
-    public Detalle(int id, Experiencia experiencias, Estudio estudios, Habilidad habilidades, Curriculum curriculums) {
-        this.id = id;
-        this.experiencias = experiencias;
-        this.estudios = estudios;
-        this.habilidades = habilidades;
-        this.curriculums = curriculums;
-    }
 
     public int getId() {
         return id;
