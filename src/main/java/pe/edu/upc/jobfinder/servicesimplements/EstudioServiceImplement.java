@@ -32,4 +32,9 @@ public class EstudioServiceImplement implements IEstudioService {
     public void update(Estudio e) {
         eR.save(e);
     }
+
+    @Override
+    public void delete(int id) {
+        eR.deleteById(id);
+    }
 }

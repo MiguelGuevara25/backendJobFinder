@@ -45,4 +45,9 @@ public class EstudioController {
         Estudio e = m.map(dto, Estudio.class);
         eS.update(e);
     }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") int id) {
+        eS.delete(id);
+    }
 }
