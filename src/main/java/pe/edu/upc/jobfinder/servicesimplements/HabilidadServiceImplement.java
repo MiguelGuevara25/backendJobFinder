@@ -18,4 +18,23 @@ public class HabilidadServiceImplement implements IHabilidadService {
         return hR.findAll();
     }
 
+    @Override
+    public void insert(Habilidad h) {
+        hR.save(h);
+    }
+
+    @Override
+    public Habilidad searchId(int id) {
+        return hR.findById(id).orElse(new Habilidad());
+    }
+
+    @Override
+    public void update(Habilidad h) {
+        hR.save(h);
+    }
+
+    @Override
+    public void delete(int h) {
+        hR.deleteById(h);
+    }
 }
