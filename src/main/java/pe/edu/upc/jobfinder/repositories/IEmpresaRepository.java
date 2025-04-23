@@ -8,6 +8,4 @@ import pe.edu.upc.jobfinder.entities.Empresa;
 import java.util.List;
 
 public interface IEmpresaRepository extends JpaRepository<Empresa, Integer> {
-    @Query("Select a from Empresa a where a.namecompany like %:nombre%")
-    public List<Empresa> buscar(@Param("nombre") String nombre);
 }

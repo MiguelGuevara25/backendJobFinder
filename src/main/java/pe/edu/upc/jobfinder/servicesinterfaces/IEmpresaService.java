@@ -11,5 +11,4 @@ public interface IEmpresaService {
     public Empresa searchId(int id);
     public void update(Empresa Empresa);
     public void delete(int id);
-    public List<Empresa> search(String name);
 }

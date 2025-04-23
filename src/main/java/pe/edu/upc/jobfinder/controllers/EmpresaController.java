@@ -46,11 +46,6 @@ public class EmpresaController {
         eS.delete(id);
     }
 
-    @GetMapping("/busquedas")
-    public List<EmpresaDTO> buscar(@RequestParam String n){
-        return eS.search(n).stream().map(h->{
-            ModelMapper m = new ModelMapper();
-            return m.map(h, EmpresaDTO.class);
-        }).collect(Collectors.toList());
-    }
+
+
 }
