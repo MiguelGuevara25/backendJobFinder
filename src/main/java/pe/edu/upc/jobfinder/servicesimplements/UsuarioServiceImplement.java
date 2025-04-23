@@ -1,10 +1,10 @@
-package pe.edu.upc.jobfinder.serviceimplements;
+package pe.edu.upc.jobfinder.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.jobfinder.entities.Usuario;
 import pe.edu.upc.jobfinder.repositories.IUsuarioRepository;
-import pe.edu.upc.jobfinder.serviceinterfaces.IUsuarioService;
+import pe.edu.upc.jobfinder.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
 

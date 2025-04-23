@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.ContratoDTO;
 import pe.edu.upc.jobfinder.dtos.CurriculumDTO;
-import pe.edu.upc.jobfinder.entities.Contrato;
 import pe.edu.upc.jobfinder.entities.Curriculum;
-import pe.edu.upc.jobfinder.serviceinterfaces.ICurriculumService;
+import pe.edu.upc.jobfinder.servicesinterfaces.ICurriculumService;
 
 import java.util.List;
 import java.util.stream.Collectors;
