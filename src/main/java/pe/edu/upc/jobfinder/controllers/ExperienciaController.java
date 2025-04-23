@@ -42,4 +42,8 @@ public class ExperienciaController {
         Experiencia e = m.map(dto, Experiencia.class);
         eS.insert(e);
     }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") int id) {
+        eS.delete(id);
+    }
 }

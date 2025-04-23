@@ -9,4 +9,5 @@ public interface IExperienciaService {
     public void insert(Experiencia e);
     public Experiencia searchId(int id);
     public void update (Experiencia e);
+    public void delete (int id);
 }

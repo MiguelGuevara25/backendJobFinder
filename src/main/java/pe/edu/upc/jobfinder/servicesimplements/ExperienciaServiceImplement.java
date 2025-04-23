@@ -33,4 +33,9 @@ public class ExperienciaServiceImplement implements IExperienciaService {
     public void update(Experiencia e) {
         eR.save(e);
     }
+
+    @Override
+    public void delete(int id) {
+        eR.deleteById(id);
+    }
 }
