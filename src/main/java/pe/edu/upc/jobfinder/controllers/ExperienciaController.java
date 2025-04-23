@@ -30,4 +30,10 @@ public class ExperienciaController {
         Experiencia e = m.map(dto, Experiencia.class);
         eS.insert(e);
     }
+    @GetMapping("/{id}")
+    public ExperienciaDTO listarId(@PathVariable("id") int id){
+        ModelMapper m = new ModelMapper();
+        ExperienciaDTO dto = m.map(eS.searchId(id), ExperienciaDTO.class);
+        return dto;
+    }
 }

@@ -23,4 +23,9 @@ public class ExperienciaServiceImplement implements IExperienciaService {
     public void insert(Experiencia e) {
         eR.save(e);
     }
+
+    @Override
+    public Experiencia searchId(int id) {
+        return eR.findById(id).orElse(new Experiencia());
+    }
 }
