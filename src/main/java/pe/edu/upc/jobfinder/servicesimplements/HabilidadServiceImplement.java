@@ -32,4 +32,9 @@ public class HabilidadServiceImplement implements IHabilidadService {
     public void update(Habilidad h) {
         hR.save(h);
     }
+
+    @Override
+    public void delete(int h) {
+        hR.deleteById(h);
+    }
 }

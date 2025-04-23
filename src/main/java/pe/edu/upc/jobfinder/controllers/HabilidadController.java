@@ -44,4 +44,9 @@ public class HabilidadController {
         Habilidad h = m.map(dto, Habilidad.class);
         hS.update(h);
     }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") int id) {
+        hS.delete(id);
+    }
 }
