@@ -1,0 +1,12 @@
+package pe.edu.upc.jobfinder.serviceinterfaces;
+
+import pe.edu.upc.jobfinder.entities.InscripcionCurso;
+
+import java.util.List;
+
+public interface IInscripcionCursoService {
+    public List<InscripcionCurso> listar();
+    public void insertar(InscripcionCurso inscripcion);
+    public void modificar(InscripcionCurso inscripcion);
+    public void eliminar(int idInscripcion);
+}
