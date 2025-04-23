@@ -22,4 +22,14 @@ public class RolServiceImplement implements IRolService {
     public void insertar(Rol rol) {
         rolRepository.save(rol);
     }
+
+    @Override
+    public void update(Rol rol) {
+        rolRepository.save(rol);
+    }
+
+    @Override
+    public void delete(int id) {
+        rolRepository.deleteById(id);
+    }
 }
