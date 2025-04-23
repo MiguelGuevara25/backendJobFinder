@@ -28,4 +28,8 @@ public class EstudioServiceImplement implements IEstudioService {
         return eR.findById(id).orElse(new Estudio());
     }
 
+    @Override
+    public void update(Estudio e) {
+        eR.save(e);
+    }
 }

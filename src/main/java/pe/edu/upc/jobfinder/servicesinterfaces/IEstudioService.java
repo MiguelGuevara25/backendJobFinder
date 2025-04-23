@@ -8,4 +8,5 @@ public interface IEstudioService {
     public List<Estudio> list();
     public void insert(Estudio e);
     public Estudio searchId(int id);
+    public void update(Estudio e);
 }

@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.EstudioDTO;
+import pe.edu.upc.jobfinder.dtos.HabilidadDTO;
 import pe.edu.upc.jobfinder.entities.Estudio;
 import pe.edu.upc.jobfinder.servicesinterfaces.IEstudioService;
 
@@ -36,5 +37,12 @@ public class EstudioController {
         ModelMapper m = new ModelMapper();
         EstudioDTO dto = m.map(eS.searchId(id), EstudioDTO.class);
         return dto;
+    }
+
+    @PutMapping
+    public void modificar(@RequestBody EstudioDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Estudio e = m.map(dto, Estudio.class);
+        eS.update(e);
     }
 }
