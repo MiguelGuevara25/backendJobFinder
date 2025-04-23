@@ -36,4 +36,10 @@ public class ExperienciaController {
         ExperienciaDTO dto = m.map(eS.searchId(id), ExperienciaDTO.class);
         return dto;
     }
+    @PutMapping
+    public void modificar(@RequestBody ExperienciaDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Experiencia e = m.map(dto, Experiencia.class);
+        eS.insert(e);
+    }
 }

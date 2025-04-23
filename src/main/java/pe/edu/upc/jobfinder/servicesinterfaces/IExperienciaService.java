@@ -8,4 +8,5 @@ public interface IExperienciaService {
     public List<Experiencia> list();
     public void insert(Experiencia e);
     public Experiencia searchId(int id);
+    public void update (Experiencia e);
 }
