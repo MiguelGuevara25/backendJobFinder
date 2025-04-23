@@ -18,4 +18,8 @@ public class HabilidadServiceImplement implements IHabilidadService {
         return hR.findAll();
     }
 
+    @Override
+    public void insert(Habilidad h) {
+        hR.save(h);
+    }
 }
