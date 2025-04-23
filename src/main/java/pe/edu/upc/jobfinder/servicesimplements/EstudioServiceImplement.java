@@ -22,4 +22,10 @@ public class EstudioServiceImplement implements IEstudioService {
     public void insert(Estudio e) {
         eR.save(e);
     }
+
+    @Override
+    public Estudio searchId(int id) {
+        return eR.findById(id).orElse(new Estudio());
+    }
+
 }

@@ -23,10 +23,18 @@ public class EstudioController {
             return m.map(x, Estudio.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping
     public void insertar(@RequestBody EstudioDTO dto) {
         ModelMapper m = new ModelMapper();
         Estudio e = m.map(dto, Estudio.class);
         eS.insert(e);
+    }
+
+    @GetMapping("/{id}")
+    public EstudioDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        EstudioDTO dto = m.map(eS.searchId(id), EstudioDTO.class);
+        return dto;
     }
 }

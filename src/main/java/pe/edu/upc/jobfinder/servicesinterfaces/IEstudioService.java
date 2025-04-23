@@ -7,4 +7,5 @@ import java.util.List;
 public interface IEstudioService {
     public List<Estudio> list();
     public void insert(Estudio e);
+    public Estudio searchId(int id);
 }
