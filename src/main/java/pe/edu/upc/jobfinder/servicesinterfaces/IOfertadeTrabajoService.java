@@ -11,4 +11,5 @@ public interface IOfertadeTrabajoService {
     public OfertadeTrabajo searchId(int id);
     public void update(OfertadeTrabajo  OfertadeTrabajo );
     public void delete(int id);
+
 }
