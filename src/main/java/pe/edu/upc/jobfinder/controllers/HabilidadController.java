@@ -2,7 +2,6 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.HabilidadDTO;
 import pe.edu.upc.jobfinder.entities.Habilidad;
@@ -29,5 +28,11 @@ public class HabilidadController {
         ModelMapper m = new ModelMapper();
         Habilidad h = m.map(dto, Habilidad.class);
         hS.insert(h);
+    }
+    @GetMapping("/{id}")
+    public HabilidadDTO listarId(@PathVariable("id") int id){
+        ModelMapper m = new ModelMapper();
+        HabilidadDTO dto = m.map(hS.searchId(id), HabilidadDTO.class);
+        return dto;
     }
 }

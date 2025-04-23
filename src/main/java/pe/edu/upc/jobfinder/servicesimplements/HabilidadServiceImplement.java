@@ -22,4 +22,9 @@ public class HabilidadServiceImplement implements IHabilidadService {
     public void insert(Habilidad h) {
         hR.save(h);
     }
+
+    @Override
+    public Habilidad searchId(int id) {
+        return hR.findById(id).orElse(new Habilidad());
+    }
 }
