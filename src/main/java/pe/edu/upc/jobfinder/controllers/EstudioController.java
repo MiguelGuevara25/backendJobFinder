@@ -2,9 +2,8 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.jobfinder.dtos.EstudioDTO;
 import pe.edu.upc.jobfinder.entities.Estudio;
 import pe.edu.upc.jobfinder.servicesinterfaces.IEstudioService;
 
@@ -23,5 +22,11 @@ public class EstudioController {
             ModelMapper m = new ModelMapper();
             return m.map(x, Estudio.class);
         }).collect(Collectors.toList());
+    }
+    @PostMapping
+    public void insertar(@RequestBody EstudioDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Estudio e = m.map(dto, Estudio.class);
+        eS.insert(e);
     }
 }

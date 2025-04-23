@@ -17,4 +17,9 @@ public class EstudioServiceImplement implements IEstudioService {
     public List<Estudio> list() {
         return eR.findAll();
     }
+
+    @Override
+    public void insert(Estudio e) {
+        eR.save(e);
+    }
 }
