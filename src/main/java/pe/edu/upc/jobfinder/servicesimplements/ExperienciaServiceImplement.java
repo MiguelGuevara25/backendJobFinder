@@ -18,4 +18,9 @@ public class ExperienciaServiceImplement implements IExperienciaService {
     public List<Experiencia> list() {
         return eR.findAll();
     }
+
+    @Override
+    public void insert(Experiencia e) {
+        eR.save(e);
+    }
 }

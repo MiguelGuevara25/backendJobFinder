@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IExperienciaService {
     public List<Experiencia> list();
+    public void insert(Experiencia e);
 }
