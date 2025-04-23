@@ -1,0 +1,9 @@
+package pe.edu.upc.jobfinder.servicesinterfaces;
+
+import pe.edu.upc.jobfinder.entities.Experiencia;
+
+import java.util.List;
+
+public interface IExperienciaService {
+    public List<Experiencia> list();
+}
