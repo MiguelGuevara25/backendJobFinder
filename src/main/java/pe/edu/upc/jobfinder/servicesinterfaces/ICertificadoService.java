@@ -12,4 +12,5 @@ public interface ICertificadoService {
     public void modificar(Certificado certificado);
     public void eliminar(int idCertificado);
     public List<Certificado> searchActiveCertificaates();
+    public List<String[]> quantyCertificateByYear();
 }

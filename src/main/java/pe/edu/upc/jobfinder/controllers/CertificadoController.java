@@ -3,10 +3,7 @@ package pe.edu.upc.jobfinder.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.jobfinder.dtos.CantidadCursosPlataformaDTO;
-import pe.edu.upc.jobfinder.dtos.CertificadoDTO;
-import pe.edu.upc.jobfinder.dtos.ContratoDTO;
-import pe.edu.upc.jobfinder.dtos.CursoDTO;
+import pe.edu.upc.jobfinder.dtos.*;
 import pe.edu.upc.jobfinder.entities.Certificado;
 import pe.edu.upc.jobfinder.servicesinterfaces.ICertificadoService;
 
@@ -54,5 +51,17 @@ public class CertificadoController {
             ModelMapper m = new ModelMapper();
             return m.map(h, CertificadoDTO.class);
         }).collect(Collectors.toList());
+    }
+    @GetMapping("/cantidades")
+    public List<CantidadCertificadosPorAnioDTO> cantidadCertificados(){
+        List<String[]> filaLista=cS.quantyCertificateByYear();
+        List<CantidadCertificadosPorAnioDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            CantidadCertificadosPorAnioDTO dto=new CantidadCertificadosPorAnioDTO();
+            dto.setAnio(Integer.parseInt(columna[0]));
+            dto.setTotal(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

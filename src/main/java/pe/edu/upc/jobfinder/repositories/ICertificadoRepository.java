@@ -12,4 +12,9 @@ public interface ICertificadoRepository extends JpaRepository<Certificado, Integ
             "WHERE fecha_vencimiento_certificado > CURRENT_DATE\n" +
             "ORDER BY fecha_vencimiento_certificado ASC;",nativeQuery = true)
     public List<Certificado> searchActiveCertificaates();
+    @Query(value = "SELECT EXTRACT(YEAR FROM fecha_emision_certificado) AS anio, COUNT(*) AS total\n" +
+            "FROM certificado\n" +
+            "GROUP BY anio\n" +
+            "ORDER BY anio DESC;",nativeQuery = true)
+    public List<String[]> quantityCertificateByYear();
 }

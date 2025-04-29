@@ -42,4 +42,9 @@ public class CertificadoServiceImplement implements ICertificadoService {
     public List<Certificado> searchActiveCertificaates() {
         return cR.searchActiveCertificaates();
     }
+
+    @Override
+    public List<String[]> quantyCertificateByYear() {
+        return cR.quantityCertificateByYear();
+    }
 }
