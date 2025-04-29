@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.FrecuenciaHabilidadDTO;
+import pe.edu.upc.jobfinder.dtos.HabilidaVaciaDTO;
 import pe.edu.upc.jobfinder.dtos.HabilidadDTO;
 import pe.edu.upc.jobfinder.entities.Habilidad;
 import pe.edu.upc.jobfinder.servicesinterfaces.IHabilidadService;
@@ -60,6 +61,18 @@ public class HabilidadController {
             FrecuenciaHabilidadDTO dto = new FrecuenciaHabilidadDTO();
             dto.setHabilidad(columna[0]);
             dto.setCantidad(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+    @GetMapping("/habilidad_nulas")
+    public List<HabilidaVaciaDTO> habilidadVacia() {
+        List<String[]> filaLista=hS.habilidad_sin_usuarios();
+        List<HabilidaVaciaDTO> dtoLista =new ArrayList<>();
+        for (String[] columna: filaLista) {
+            HabilidaVaciaDTO dto = new HabilidaVaciaDTO();
+            dto.setNombre(columna[0]);
             dtoLista.add(dto);
         }
         return dtoLista;

@@ -42,4 +42,9 @@ public class HabilidadServiceImplement implements IHabilidadService {
     public List<String[]> frecuencia_habilidad() {
         return hR.frecuencia_habilidad();
     }
+
+    @Override
+    public List<String[]> habilidad_sin_usuarios() {
+        return hR.habilidad_sin_usuarios();
+    }
 }
