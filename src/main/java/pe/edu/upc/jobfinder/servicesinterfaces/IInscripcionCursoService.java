@@ -11,4 +11,6 @@ public interface IInscripcionCursoService {
     public InscripcionCurso searchId(int idInscripcion);
     public void modificar(InscripcionCurso inscripcion);
     public void eliminar(int idInscripcion);
+    public List<String[]> totalRegistrationByCourse();
+    public List<String[]> promedioDeCursos();
 }
