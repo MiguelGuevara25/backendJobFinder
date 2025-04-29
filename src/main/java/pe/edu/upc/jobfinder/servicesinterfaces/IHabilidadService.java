@@ -14,4 +14,7 @@ public interface IHabilidadService {
     public void update(Habilidad h);
 
     public void delete(int h);
+
+    public List<String[]> frecuencia_habilidad();
+    public List<String[]> habilidad_sin_usuarios();
 }
