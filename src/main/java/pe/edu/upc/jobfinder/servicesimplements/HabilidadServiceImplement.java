@@ -37,4 +37,9 @@ public class HabilidadServiceImplement implements IHabilidadService {
     public void delete(int h) {
         hR.deleteById(h);
     }
+
+    @Override
+    public List<String[]> frecuencia_habilidad() {
+        return hR.frecuencia_habilidad();
+    }
 }
