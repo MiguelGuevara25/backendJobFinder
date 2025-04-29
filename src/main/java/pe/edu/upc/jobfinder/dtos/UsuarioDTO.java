@@ -1,13 +1,12 @@
 package pe.edu.upc.jobfinder.dtos;
 
-import jakarta.persistence.Column;
 
 public class UsuarioDTO {
     private int idUsuario;
     private String nombreUsuario;
     private String apellidoUsuario;
     private String correoUsuario;
-    private int telefonoUsuario;
+    private String telefonoUsuario;
     private String direccionUsuario;
 
     public int getIdUsuario() {
@@ -42,11 +41,11 @@ public class UsuarioDTO {
         this.correoUsuario = correoUsuario;
     }
 
-    public int getTelefonoUsuario() {
+    public String getTelefonoUsuario() {
         return telefonoUsuario;
     }
 
-    public void setTelefonoUsuario(int telefonoUsuario) {
+    public void setTelefonoUsuario(String telefonoUsuario) {
         this.telefonoUsuario = telefonoUsuario;
     }
 
