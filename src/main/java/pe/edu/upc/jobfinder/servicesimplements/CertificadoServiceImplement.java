@@ -37,4 +37,14 @@ public class CertificadoServiceImplement implements ICertificadoService {
     public void eliminar(int idCertificado) {
         cR.deleteById(idCertificado);
     }
+
+    @Override
+    public List<Certificado> searchActiveCertificaates() {
+        return cR.searchActiveCertificaates();
+    }
+
+    @Override
+    public List<String[]> quantyCertificateByYear() {
+        return cR.quantityCertificateByYear();
+    }
 }

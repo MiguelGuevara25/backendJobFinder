@@ -38,4 +38,14 @@ public class InscripcionCursoServiceImplement implements IInscripcionCursoServic
     public void eliminar(int idInscripcion) {
         iR.deleteById(idInscripcion);
     }
+
+    @Override
+    public List<String[]> totalRegistrationByCourse() {
+        return iR.totalRegistrationByCourse();
+    }
+
+    @Override
+    public List<String[]> promedioDeCursos() {
+        return iR.promedioDeCursos();
+    }
 }
