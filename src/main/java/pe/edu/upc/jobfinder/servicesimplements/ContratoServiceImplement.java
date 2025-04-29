@@ -37,4 +37,9 @@ public class ContratoServiceImplement implements IContratoService {
     public void delete(int id) {
         cR.deleteById(id);
     }
+
+    @Override
+    public List<Contrato> searchByContractType(String contractType) {
+        return cR.searchByContractType(contractType);
+    }
 }
