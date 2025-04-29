@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.UsuarioDTO;
 import pe.edu.upc.jobfinder.entities.Usuario;
-import pe.edu.upc.jobfinder.serviceinterfaces.IUsuarioService;
+import pe.edu.upc.jobfinder.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
 import java.util.stream.Collectors;

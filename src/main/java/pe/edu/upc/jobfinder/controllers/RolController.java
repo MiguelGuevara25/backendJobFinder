@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.RolDTO;
 import pe.edu.upc.jobfinder.entities.Rol;
-import pe.edu.upc.jobfinder.serviceinterfaces.IRolService;
+import pe.edu.upc.jobfinder.servicesinterfaces.IRolService;
 
 import java.util.List;
 import java.util.stream.Collectors;
