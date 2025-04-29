@@ -7,8 +7,12 @@ public class UsuarioDTO {
     private String nombreUsuario;
     private String apellidoUsuario;
     private String correoUsuario;
-    private int telefonoUsuario;
+    private String telefonoUsuario;
     private String direccionUsuario;
+    private boolean estadoUsuario;
+    private String usuarioUsuario;
+    private String contraseniaUsuario;
+    private boolean favoritoUsuario;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -42,11 +46,11 @@ public class UsuarioDTO {
         this.correoUsuario = correoUsuario;
     }
 
-    public int getTelefonoUsuario() {
+    public String getTelefonoUsuario() {
         return telefonoUsuario;
     }
 
-    public void setTelefonoUsuario(int telefonoUsuario) {
+    public void setTelefonoUsuario(String telefonoUsuario) {
         this.telefonoUsuario = telefonoUsuario;
     }
 
@@ -56,5 +60,37 @@ public class UsuarioDTO {
 
     public void setDireccionUsuario(String direccionUsuario) {
         this.direccionUsuario = direccionUsuario;
+    }
+
+    public boolean isEstadoUsuario() {
+        return estadoUsuario;
+    }
+
+    public void setEstadoUsuario(boolean estadoUsuario) {
+        this.estadoUsuario = estadoUsuario;
+    }
+
+    public String getUsuarioUsuario() {
+        return usuarioUsuario;
+    }
+
+    public void setUsuarioUsuario(String usuarioUsuario) {
+        this.usuarioUsuario = usuarioUsuario;
+    }
+
+    public String getContraseniaUsuario() {
+        return contraseniaUsuario;
+    }
+
+    public void setContraseniaUsuario(String contraseniaUsuario) {
+        this.contraseniaUsuario = contraseniaUsuario;
+    }
+
+    public boolean isFavoritoUsuario() {
+        return favoritoUsuario;
+    }
+
+    public void setFavoritoUsuario(boolean favoritoUsuario) {
+        this.favoritoUsuario = favoritoUsuario;
     }
 }

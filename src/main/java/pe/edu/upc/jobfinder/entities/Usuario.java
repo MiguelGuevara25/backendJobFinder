@@ -19,7 +19,7 @@ public class Usuario {
     private String correoUsuario;
 
     @Column(name = "telefono", nullable = false)
-    private int telefonoUsuario;
+    private String telefonoUsuario;
 
     @Column(name = "direccion", nullable = false, length = 250)
     private String direccionUsuario;
@@ -39,7 +39,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, String correoUsuario, int telefonoUsuario, String direccionUsuario, boolean estadoUsuario, String usuarioUsuario, String contraseniaUsuario, boolean favoritoUsuario) {
+    public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, String correoUsuario, String telefonoUsuario, String direccionUsuario, boolean estadoUsuario, String usuarioUsuario, String contraseniaUsuario, boolean favoritoUsuario) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
@@ -84,11 +84,11 @@ public class Usuario {
         this.correoUsuario = correoUsuario;
     }
 
-    public int getTelefonoUsuario() {
+    public String getTelefonoUsuario() {
         return telefonoUsuario;
     }
 
-    public void setTelefonoUsuario(int telefonoUsuario) {
+    public void setTelefonoUsuario(String telefonoUsuario) {
         this.telefonoUsuario = telefonoUsuario;
     }
 

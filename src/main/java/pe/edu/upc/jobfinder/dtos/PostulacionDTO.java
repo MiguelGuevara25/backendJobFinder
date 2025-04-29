@@ -1,9 +1,7 @@
 package pe.edu.upc.jobfinder.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import pe.edu.upc.jobfinder.entities.OfertadeTrabajo;
 
 import java.time.LocalDate;
 
@@ -11,9 +9,12 @@ public class PostulacionDTO {
 
     private int id;
     private LocalDate date;
+
     private String state;
+
     private Boolean acceptedcandidate;
-    private String joboffer_id_oferta;
+
+    private OfertadeTrabajo ofertaTrabajo;
 
     public int getId() {
         return id;
@@ -47,11 +48,11 @@ public class PostulacionDTO {
         this.acceptedcandidate = acceptedcandidate;
     }
 
-    public String getJoboffer_id_oferta() {
-        return joboffer_id_oferta;
+    public OfertadeTrabajo getOfertaTrabajo() {
+        return ofertaTrabajo;
     }
 
-    public void setJoboffer_id_oferta(String joboffer_id_oferta) {
-        this.joboffer_id_oferta = joboffer_id_oferta;
+    public void setOfertaTrabajo(OfertadeTrabajo ofertaTrabajo) {
+        this.ofertaTrabajo = ofertaTrabajo;
     }
 }

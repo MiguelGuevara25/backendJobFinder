@@ -1,20 +1,25 @@
 package pe.edu.upc.jobfinder.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import pe.edu.upc.jobfinder.entities.Empresa;
 
 public class OfertadeTrabajoDTO {
 
     private int id;
-    private int name;
+
+    private String name;
+
     private String description;
+
     private double salary;
+
     private String typeofcontract;
+
     private String experience;
+
     private String location;
-    private String company_id_empresa;
+
+    private Empresa empresa;
 
     public int getId() {
         return id;
@@ -24,11 +29,11 @@ public class OfertadeTrabajoDTO {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -72,11 +77,11 @@ public class OfertadeTrabajoDTO {
         this.location = location;
     }
 
-    public String getCompany_id_empresa() {
-        return company_id_empresa;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setCompany_id_empresa(String company_id_empresa) {
-        this.company_id_empresa = company_id_empresa;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 }
