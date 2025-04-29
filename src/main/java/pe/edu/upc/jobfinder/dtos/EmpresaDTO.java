@@ -8,14 +8,23 @@ import jakarta.persistence.Id;
 public class EmpresaDTO {
 
     private int id;
-    private int name;
+
+    private String name;
+
     private String description;
+
     private String sector;
+
     private String website;
+
     private String address;
-    private double telephone;
+
+    private String telephone;
+
     private String mail;
+
     private String location;
+
     private String password;
 
     public int getId() {
@@ -26,11 +35,11 @@ public class EmpresaDTO {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -66,11 +75,11 @@ public class EmpresaDTO {
         this.address = address;
     }
 
-    public double getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(double telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
