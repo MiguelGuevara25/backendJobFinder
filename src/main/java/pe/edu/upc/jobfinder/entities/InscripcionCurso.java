@@ -16,14 +16,63 @@ public class InscripcionCurso {
     private int progresoInscripcionCursoñ;
 
     @ManyToOne
-    @JoinColumn(name = "curso")
+    @JoinColumn(name = "idCurso")
     private InscripcionCurso curso;
 
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
 
 
     public InscripcionCurso() {
     }
 
+    public InscripcionCurso(int idInscripcion, LocalDate fechaInscripcionCurso, int progresoInscripcionCursoñ, InscripcionCurso curso, Usuario usuario) {
+        this.idInscripcion = idInscripcion;
+        this.fechaInscripcionCurso = fechaInscripcionCurso;
+        this.progresoInscripcionCursoñ = progresoInscripcionCursoñ;
+        this.curso = curso;
+        this.usuario = usuario;
+    }
 
+    public int getIdInscripcion() {
+        return idInscripcion;
+    }
+
+    public void setIdInscripcion(int idInscripcion) {
+        this.idInscripcion = idInscripcion;
+    }
+
+    public LocalDate getFechaInscripcionCurso() {
+        return fechaInscripcionCurso;
+    }
+
+    public void setFechaInscripcionCurso(LocalDate fechaInscripcionCurso) {
+        this.fechaInscripcionCurso = fechaInscripcionCurso;
+    }
+
+    public int getProgresoInscripcionCursoñ() {
+        return progresoInscripcionCursoñ;
+    }
+
+    public void setProgresoInscripcionCursoñ(int progresoInscripcionCursoñ) {
+        this.progresoInscripcionCursoñ = progresoInscripcionCursoñ;
+    }
+
+    public InscripcionCurso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(InscripcionCurso curso) {
+        this.curso = curso;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }
