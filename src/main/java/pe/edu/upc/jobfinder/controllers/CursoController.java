@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import pe.edu.upc.jobfinder.dtos.ContratoDTO;
 import pe.edu.upc.jobfinder.dtos.CursoDTO;
 
 import pe.edu.upc.jobfinder.entities.Curso;
@@ -30,6 +31,11 @@ public class CursoController {
         ModelMapper m= new ModelMapper();
         Curso c=m.map(cursoDTO,Curso.class);
         cursoService.insertar(c);
+    }
+    @GetMapping("/{id}")
+    public CursoDTO listarId(@PathVariable int id) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(cursoService.searchId(id), CursoDTO.class);
     }
     @PutMapping()
     public void modificar(@RequestBody CursoDTO cursoDTO) {

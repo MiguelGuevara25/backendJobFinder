@@ -3,6 +3,7 @@ package pe.edu.upc.jobfinder.servicesimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.jobfinder.entities.Curso;
+import pe.edu.upc.jobfinder.entities.Detalle;
 import pe.edu.upc.jobfinder.repositories.ICursoRepository;
 import pe.edu.upc.jobfinder.servicesinterfaces.ICursoService;
 
@@ -24,6 +25,11 @@ public class CursoServiceImplement implements ICursoService {
     @Override
     public void modificar(Curso curso) {
         ceR.save(curso);
+    }
+
+    @Override
+    public Curso searchId(int idCurso) {
+        return ceR.findById(idCurso).orElse(new Curso());
     }
 
     @Override
