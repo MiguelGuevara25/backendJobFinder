@@ -13,4 +13,5 @@ public interface ICursoService {
     public Curso searchId(int idCurso);
     public void eliminar(int idCurso);
     public List<String[]> quantityCoursesByPlatform();
+    public List<Curso> searchByNameCourse(String nameCourse);
 }

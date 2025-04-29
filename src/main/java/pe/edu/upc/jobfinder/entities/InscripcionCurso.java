@@ -12,15 +12,15 @@ public class InscripcionCurso {
     private int idInscripcion;
     @Column(name = "fechaInscripcionCurso", nullable = false)
     private LocalDate fechaInscripcionCurso;
-    @Column(name = "progresoInscripcionCursoñ", nullable = false)
-    private int progresoInscripcionCursoñ;
+    @Column(name = "progresoInscripcionCurso", nullable = false)
+    private String progresoInscripcionCurso;
 
     @ManyToOne
-    @JoinColumn(name = "idCurso")
-    private InscripcionCurso curso;
+    @JoinColumn(name = "idCurso", nullable = false)
+    private Curso curso;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario")
+    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
 
@@ -28,10 +28,10 @@ public class InscripcionCurso {
     public InscripcionCurso() {
     }
 
-    public InscripcionCurso(int idInscripcion, LocalDate fechaInscripcionCurso, int progresoInscripcionCursoñ, InscripcionCurso curso, Usuario usuario) {
+    public InscripcionCurso(int idInscripcion, LocalDate fechaInscripcionCurso, String progresoInscripcionCurso, Curso curso, Usuario usuario) {
         this.idInscripcion = idInscripcion;
         this.fechaInscripcionCurso = fechaInscripcionCurso;
-        this.progresoInscripcionCursoñ = progresoInscripcionCursoñ;
+        this.progresoInscripcionCurso = progresoInscripcionCurso;
         this.curso = curso;
         this.usuario = usuario;
     }
@@ -52,19 +52,19 @@ public class InscripcionCurso {
         this.fechaInscripcionCurso = fechaInscripcionCurso;
     }
 
-    public int getProgresoInscripcionCursoñ() {
-        return progresoInscripcionCursoñ;
+    public String getProgresoInscripcionCurso() {
+        return progresoInscripcionCurso;
     }
 
-    public void setProgresoInscripcionCursoñ(int progresoInscripcionCursoñ) {
-        this.progresoInscripcionCursoñ = progresoInscripcionCursoñ;
+    public void setProgresoInscripcionCurso(String progresoInscripcionCurso) {
+        this.progresoInscripcionCurso = progresoInscripcionCurso;
     }
 
-    public InscripcionCurso getCurso() {
+    public Curso getCurso() {
         return curso;
     }
 
-    public void setCurso(InscripcionCurso curso) {
+    public void setCurso(Curso curso) {
         this.curso = curso;
     }
 
