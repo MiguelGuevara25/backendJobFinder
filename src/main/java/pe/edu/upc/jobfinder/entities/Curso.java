@@ -16,18 +16,22 @@ public class Curso {
     private String plataformaCurso;
     @Column(name = "linkCurso", nullable = false, length = 50)
     private String linkCurso;
-    //FALTA FK
+
+    @ManyToOne
+    @JoinColumn(name = "idEmpresa")
+    private Empresa empresa;
 
 
     public Curso() {
     }
 
-    public Curso(int idCurso, String tituloCurso, String descripcionCurso, String plataformaCurso, String linkCurso) {
+    public Curso(int idCurso, String tituloCurso, String descripcionCurso, String plataformaCurso, String linkCurso, Empresa empresa) {
         this.idCurso = idCurso;
         this.tituloCurso = tituloCurso;
         this.descripcionCurso = descripcionCurso;
         this.plataformaCurso = plataformaCurso;
         this.linkCurso = linkCurso;
+        this.empresa = empresa;
     }
 
     public int getIdCurso() {
@@ -68,5 +72,13 @@ public class Curso {
 
     public void setLinkCurso(String linkCurso) {
         this.linkCurso = linkCurso;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 }

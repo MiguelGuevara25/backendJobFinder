@@ -1,6 +1,7 @@
 package pe.edu.upc.jobfinder.dtos;
 
 import jakarta.persistence.Column;
+import pe.edu.upc.jobfinder.entities.Empresa;
 
 public class CursoDTO {
     private int idCurso;
@@ -8,7 +9,8 @@ public class CursoDTO {
     private String descripcionCurso;
     private String plataformaCurso;
     private String linkCurso;
-    //FALTA FK
+
+    private Empresa empresa;
 
     public int getIdCurso() {
         return idCurso;
@@ -48,5 +50,13 @@ public class CursoDTO {
 
     public void setLinkCurso(String linkCurso) {
         this.linkCurso = linkCurso;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 }
