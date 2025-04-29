@@ -9,7 +9,7 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "namecompany", nullable = false, length = 100)
-    private int name;
+    private String name;
     @Column(name = "description", nullable = false, length = 100)
     private String description;
     @Column(name = "sector", nullable = false, length = 100)
@@ -19,7 +19,7 @@ public class Empresa {
     @Column(name = "address", nullable = false, length = 100)
     private String address;
     @Column(name = "telephone", nullable = false, length = 100)
-    private double telephone;
+    private String telephone;
     @Column(name = "mail", nullable = false, length = 100)
     private String mail;
     @Column(name = "location", nullable = false, length = 100)
@@ -30,7 +30,7 @@ public class Empresa {
     public Empresa() {
     }
 
-    public Empresa(int id, int name, String description, String sector, String website, String address, double telephone, String mail, String location, String password) {
+    public Empresa(int id, String name, String description, String sector, String website, String address, String telephone, String mail, String location, String password) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -51,11 +51,11 @@ public class Empresa {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -91,11 +91,11 @@ public class Empresa {
         this.address = address;
     }
 
-    public double getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(double telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 

@@ -18,7 +18,7 @@ public class Usuario {
     @Column(name = "correo", nullable = false, length = 250)
     private String correoUsuario;
 
-    @Column(name = "telefono", nullable = false, length = 250)
+    @Column(name = "telefono", nullable = false)
     private String telefonoUsuario;
 
     @Column(name = "direccion", nullable = false, length = 250)

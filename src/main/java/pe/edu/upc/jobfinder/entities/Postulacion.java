@@ -16,18 +16,20 @@ public class Postulacion {
     private String state;
     @Column(name = "acceptedcandidate", nullable = false)
     private Boolean acceptedcandidate;
-    @Column(name = "joboffer_id_oferta", nullable = false, length = 100)
-    private String joboffer_id_oferta;
+
+    @ManyToOne
+    @JoinColumn(name = "joboffer_id_oferta", nullable = false)
+    private OfertadeTrabajo ofertaTrabajo;
 
     public Postulacion() {
     }
 
-    public Postulacion(int id, LocalDate date, String state, Boolean acceptedcandidate, String joboffer_id_oferta) {
+    public Postulacion(int id, LocalDate date, String state, Boolean acceptedcandidate, OfertadeTrabajo ofertaTrabajo) {
         this.id = id;
         this.date = date;
         this.state = state;
         this.acceptedcandidate = acceptedcandidate;
-        this.joboffer_id_oferta = joboffer_id_oferta;
+        this.ofertaTrabajo = ofertaTrabajo;
     }
 
     public int getId() {
@@ -62,11 +64,11 @@ public class Postulacion {
         this.acceptedcandidate = acceptedcandidate;
     }
 
-    public String getJoboffer_id_oferta() {
-        return joboffer_id_oferta;
+    public OfertadeTrabajo getOfertaTrabajo() {
+        return ofertaTrabajo;
     }
 
-    public void setJoboffer_id_oferta(String joboffer_id_oferta) {
-        this.joboffer_id_oferta = joboffer_id_oferta;
+    public void setOfertaTrabajo(OfertadeTrabajo ofertaTrabajo) {
+        this.ofertaTrabajo = ofertaTrabajo;
     }
 }

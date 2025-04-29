@@ -9,7 +9,7 @@ public class OfertadeTrabajo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name", nullable = false, length = 100)
-    private int name;
+    private String name;
     @Column(name = "description", nullable = false, length = 100)
     private String description;
     @Column(name = "salary", nullable = false)
@@ -20,13 +20,15 @@ public class OfertadeTrabajo {
     private String experience;
     @Column(name = "location", nullable = false, length = 100)
     private String location;
-    @Column(name = "company_id_empresa", nullable = false, length = 100)
-    private String company_id_empresa;
+
+    @ManyToOne
+    @JoinColumn(name = "idEmpresa")
+    private Empresa empresa;
 
     public OfertadeTrabajo() {
     }
 
-    public OfertadeTrabajo(int id, int name, String description, double salary, String typeofcontract, String experience, String location, String company_id_empresa) {
+    public OfertadeTrabajo(int id, String name, String description, double salary, String typeofcontract, String experience, String location, Empresa empresa) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -34,7 +36,7 @@ public class OfertadeTrabajo {
         this.typeofcontract = typeofcontract;
         this.experience = experience;
         this.location = location;
-        this.company_id_empresa = company_id_empresa;
+        this.empresa = empresa;
     }
 
     public int getId() {
@@ -45,11 +47,11 @@ public class OfertadeTrabajo {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -93,11 +95,11 @@ public class OfertadeTrabajo {
         this.location = location;
     }
 
-    public String getCompany_id_empresa() {
-        return company_id_empresa;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setCompany_id_empresa(String company_id_empresa) {
-        this.company_id_empresa = company_id_empresa;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 }

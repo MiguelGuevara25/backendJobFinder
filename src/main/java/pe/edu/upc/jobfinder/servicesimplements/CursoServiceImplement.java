@@ -36,4 +36,14 @@ public class CursoServiceImplement implements ICursoService {
     public void eliminar(int idCurso) {
         ceR.deleteById(idCurso);
     }
+
+    @Override
+    public List<String[]> quantityCoursesByPlatform() {
+        return ceR.quantityCoursesByPlatform();
+    }
+
+    @Override
+    public List<Curso> searchByNameCourse(String nameCourse) {
+        return ceR.searchByCourse(nameCourse);
+    }
 }
