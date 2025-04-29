@@ -62,4 +62,12 @@ public class CursoController {
         }
         return dtoLista;
     }
+
+    @GetMapping("/busquedas")
+    public List<CursoDTO> search(@RequestParam String nombre){
+        return cursoService.searchByNameCourse(nombre).stream().map(h->{
+            ModelMapper m = new ModelMapper();
+            return m.map(h, CursoDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
