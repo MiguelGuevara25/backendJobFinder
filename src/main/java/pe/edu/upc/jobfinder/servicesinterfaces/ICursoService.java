@@ -1,4 +1,4 @@
-package pe.edu.upc.jobfinder.serviceinterfaces;
+package pe.edu.upc.jobfinder.servicesinterfaces;
 
 
 import pe.edu.upc.jobfinder.entities.Curso;

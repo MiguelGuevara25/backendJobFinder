@@ -3,12 +3,10 @@ package pe.edu.upc.jobfinder.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.jobfinder.dtos.CursoDTO;
 import pe.edu.upc.jobfinder.dtos.InscripcionCursoDTO;
-import pe.edu.upc.jobfinder.entities.Curso;
 
 import pe.edu.upc.jobfinder.entities.InscripcionCurso;
-import pe.edu.upc.jobfinder.serviceinterfaces.IInscripcionCursoService;
+import pe.edu.upc.jobfinder.servicesinterfaces.IInscripcionCursoService;
 
 import java.util.List;
 import java.util.stream.Collectors;

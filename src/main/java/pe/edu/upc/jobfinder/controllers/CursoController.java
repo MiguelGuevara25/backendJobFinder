@@ -8,7 +8,7 @@ import pe.edu.upc.jobfinder.dtos.CursoDTO;
 
 import pe.edu.upc.jobfinder.entities.Curso;
 
-import pe.edu.upc.jobfinder.serviceinterfaces.ICursoService;
+import pe.edu.upc.jobfinder.servicesinterfaces.ICursoService;
 
 import java.util.List;
 import java.util.stream.Collectors;
