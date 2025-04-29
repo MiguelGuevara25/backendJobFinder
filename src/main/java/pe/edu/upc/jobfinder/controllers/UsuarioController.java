@@ -4,9 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.UsuarioDTO;
+import pe.edu.upc.jobfinder.dtos.UsuariosActivosDTO;
 import pe.edu.upc.jobfinder.entities.Usuario;
 import pe.edu.upc.jobfinder.servicesinterfaces.IUsuarioService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,5 +50,27 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int idUsuario) {
         usuarioService.eliminar(idUsuario);
+    }
+
+    @GetMapping("/activos")
+    public List<UsuariosActivosDTO> buscar(@RequestParam boolean estado){
+        List<String[]> filaLista=usuarioService.listaXactivos(estado);
+        List<UsuariosActivosDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            UsuariosActivosDTO dto=new UsuariosActivosDTO();
+            dto.setNombreUsuario(columna[0]);
+            dto.setApellidoUsuario(columna[1]);
+            dto.setIdUsuario(Integer.parseInt(columna[2]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+    @GetMapping("/busquedas")
+    public List<UsuarioDTO> buscar(@RequestParam String n){
+        return usuarioService.buscar(n).stream().map(h->{
+            ModelMapper m = new ModelMapper();
+            return m.map(h, UsuarioDTO.class);
+        }).collect(Collectors.toList());
     }
 }
