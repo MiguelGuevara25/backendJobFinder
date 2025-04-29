@@ -11,4 +11,5 @@ public interface ICertificadoService {
     public Certificado searchId(int idCertificado);
     public void modificar(Certificado certificado);
     public void eliminar(int idCertificado);
+    public List<Certificado> searchActiveCertificaates();
 }
