@@ -18,7 +18,7 @@ public class Curso {
     private String linkCurso;
 
     @ManyToOne
-    @JoinColumn(name = "idEmpresa")
+    @JoinColumn(name = "idEmpresa", nullable = false)
     private Empresa empresa;
 
 
