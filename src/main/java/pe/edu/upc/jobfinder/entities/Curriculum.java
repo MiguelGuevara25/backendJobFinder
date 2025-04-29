@@ -18,7 +18,7 @@ public class Curriculum {
     private LocalDate fechaCurriculum;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_usuario",nullable = false)
     private Usuario usuario;
 
     public int getIdCurriculum() {

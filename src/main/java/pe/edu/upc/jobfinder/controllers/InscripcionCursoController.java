@@ -3,13 +3,12 @@ package pe.edu.upc.jobfinder.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.jobfinder.dtos.CursoDTO;
-import pe.edu.upc.jobfinder.dtos.HabilidadDTO;
-import pe.edu.upc.jobfinder.dtos.InscripcionCursoDTO;
+import pe.edu.upc.jobfinder.dtos.*;
 
 import pe.edu.upc.jobfinder.entities.InscripcionCurso;
 import pe.edu.upc.jobfinder.servicesinterfaces.IInscripcionCursoService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,4 +45,31 @@ public class InscripcionCursoController {
     public void eliminar(@PathVariable("id") int idIC) {
         inscripcionCursoService.eliminar(idIC);
     }
+
+    @GetMapping("/total")
+    public List<TotalRegistrosPorCursoDTO> totalRegistrosPorCurso() {
+        List<String[]> filaLista=inscripcionCursoService.totalRegistrationByCourse();
+        List<TotalRegistrosPorCursoDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            TotalRegistrosPorCursoDTO dto=new TotalRegistrosPorCursoDTO();
+            dto.setTituloCurso(columna[0]);
+            dto.setTotalRegistros(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+    @GetMapping("/promedios")
+    public List<PromedioCursosDTO> promedioCursos() {
+        List<String[]> filaLista=inscripcionCursoService.promedioDeCursos();
+        List<PromedioCursosDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            PromedioCursosDTO dto=new PromedioCursosDTO();
+            dto.setTituloCurso(columna[0]);
+            dto.setPromedioProgreso(Double.parseDouble(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
 }

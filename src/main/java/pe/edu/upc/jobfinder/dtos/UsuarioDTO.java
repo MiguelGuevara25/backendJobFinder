@@ -1,6 +1,5 @@
 package pe.edu.upc.jobfinder.dtos;
 
-import jakarta.persistence.Column;
 
 public class UsuarioDTO {
     private int idUsuario;
@@ -13,6 +12,7 @@ public class UsuarioDTO {
     private String usuarioUsuario;
     private String contraseniaUsuario;
     private boolean favoritoUsuario;
+    private int edadUsuario;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -92,5 +92,13 @@ public class UsuarioDTO {
 
     public void setFavoritoUsuario(boolean favoritoUsuario) {
         this.favoritoUsuario = favoritoUsuario;
+    }
+
+    public int getEdadUsuario() {
+        return edadUsuario;
+    }
+
+    public void setEdadUsuario(int edadUsuario) {
+        this.edadUsuario = edadUsuario;
     }
 }

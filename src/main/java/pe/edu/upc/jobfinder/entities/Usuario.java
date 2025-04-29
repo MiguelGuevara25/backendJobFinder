@@ -36,10 +36,13 @@ public class Usuario {
     @Column(name = "favorito", nullable = false)
     private boolean favoritoUsuario;
 
+    @Column(name = "edad", nullable = false, length = 250)
+    private int edadUsuario;
+
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, String correoUsuario, String telefonoUsuario, String direccionUsuario, boolean estadoUsuario, String usuarioUsuario, String contraseniaUsuario, boolean favoritoUsuario) {
+    public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, String correoUsuario, String telefonoUsuario, String direccionUsuario, boolean estadoUsuario, String usuarioUsuario, String contraseniaUsuario, boolean favoritoUsuario, int edadUsuario) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
@@ -50,6 +53,7 @@ public class Usuario {
         this.usuarioUsuario = usuarioUsuario;
         this.contraseniaUsuario = contraseniaUsuario;
         this.favoritoUsuario = favoritoUsuario;
+        this.edadUsuario = edadUsuario;
     }
 
     public int getIdUsuario() {
@@ -131,4 +135,13 @@ public class Usuario {
     public void setFavoritoUsuario(boolean favoritoUsuario) {
         this.favoritoUsuario = favoritoUsuario;
     }
+
+    public int getEdadUsuario() {
+        return edadUsuario;
+    }
+
+    public void setEdadUsuario(int edadUsuario) {
+        this.edadUsuario = edadUsuario;
+    }
 }
+

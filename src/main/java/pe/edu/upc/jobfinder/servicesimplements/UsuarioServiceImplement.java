@@ -37,4 +37,14 @@ public class UsuarioServiceImplement implements IUsuarioService{
     public void eliminar(int idUsuario) {
         usuarioRepository.deleteById(idUsuario);
     }
+
+    @Override
+    public List<String[]> listaXactivos(boolean estado) {
+        return usuarioRepository.listaXactivos(estado);
+    }
+
+    @Override
+    public List<Usuario> buscar(String nombre) {
+        return usuarioRepository.buscar(nombre);
+    }
 }

@@ -37,4 +37,14 @@ public class EstudioServiceImplement implements IEstudioService {
     public void delete(int id) {
         eR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> buscarCentro(String nombre) {
+        return eR.buscarCentro(nombre);
+    }
+
+    @Override
+    public List<String[]> institucionesMasFrecuentes() {
+        return eR.institucionesMasFrecuentes();
+    }
 }
