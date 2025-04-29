@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.CertificadoDTO;
+import pe.edu.upc.jobfinder.dtos.ContratoDTO;
 import pe.edu.upc.jobfinder.entities.Certificado;
 import pe.edu.upc.jobfinder.servicesinterfaces.ICertificadoService;
 
@@ -27,6 +28,11 @@ public class CertificadoController {
         ModelMapper m= new ModelMapper();
         Certificado c=m.map(certificadoDTO,Certificado.class);
         cS.insertar(c);
+    }
+    @GetMapping("/{id}")
+    public CertificadoDTO listarId(@PathVariable int id) {
+        ModelMapper m = new ModelMapper();
+        return m.map(cS.searchId(id), CertificadoDTO.class);
     }
     @PutMapping()
     public void modificar(@RequestBody CertificadoDTO certificadoDTO) {

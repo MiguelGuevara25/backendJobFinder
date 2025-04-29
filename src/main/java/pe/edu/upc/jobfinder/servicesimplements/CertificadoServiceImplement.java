@@ -3,6 +3,7 @@ package pe.edu.upc.jobfinder.servicesimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.jobfinder.entities.Certificado;
+import pe.edu.upc.jobfinder.entities.Contrato;
 import pe.edu.upc.jobfinder.repositories.ICertificadoRepository;
 import pe.edu.upc.jobfinder.servicesinterfaces.ICertificadoService;
 
@@ -20,6 +21,11 @@ public class CertificadoServiceImplement implements ICertificadoService {
     @Override
     public void insertar(Certificado certificado) {
         cR.save(certificado);
+    }
+
+    @Override
+    public Certificado searchId(int idCertificado) {
+        return cR.findById(idCertificado).orElse(new Certificado());
     }
 
     @Override
