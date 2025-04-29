@@ -24,12 +24,24 @@ public class RolController {
             return modelMapper.map(rol,RolDTO.class);
         }).collect(Collectors.toList());
     }
+    @PostMapping
+    public void insertar(@RequestBody RolDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Rol rol = m.map(dto, Rol.class);
+        rolService.insertar(rol);
+    }
 
     @PutMapping
     public void modificar(@RequestBody RolDTO dto) {
         ModelMapper m = new ModelMapper();
         Rol rol = m.map(dto, Rol.class);
         rolService.update(rol);
+    }
+    @GetMapping("/{id}")
+    public RolDTO listarId(@PathVariable("id") int idRol) {
+        ModelMapper m = new ModelMapper();
+        RolDTO rolDTO = m.map(rolService.listarid(idRol), RolDTO.class);
+        return rolDTO;
     }
 
     @DeleteMapping("/{id}")

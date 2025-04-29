@@ -24,6 +24,11 @@ public class RolServiceImplement implements IRolService {
     }
 
     @Override
+    public Rol listarid(int id) {
+        return rolRepository.findById(id).orElse(new Rol());
+    }
+
+    @Override
     public void update(Rol rol) {
         rolRepository.save(rol);
     }
