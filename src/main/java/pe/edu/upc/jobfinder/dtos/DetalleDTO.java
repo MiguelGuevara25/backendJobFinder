@@ -1,10 +1,6 @@
 package pe.edu.upc.jobfinder.dtos;
 
-import jakarta.persistence.*;
-import pe.edu.upc.jobfinder.entities.Curriculum;
-import pe.edu.upc.jobfinder.entities.Estudio;
-import pe.edu.upc.jobfinder.entities.Experiencia;
-import pe.edu.upc.jobfinder.entities.Habilidad;
+import pe.edu.upc.jobfinder.entities.*;
 
 public class DetalleDTO {
     private int id;
@@ -12,8 +8,7 @@ public class DetalleDTO {
     private Estudio estudios;
     private Habilidad habilidades;
     private Curriculum curriculums;
-    //private Certificado certificados;
-
+    private Certificado certificados;
 
     public int getId() {
         return id;
@@ -53,5 +48,13 @@ public class DetalleDTO {
 
     public void setCurriculums(Curriculum curriculums) {
         this.curriculums = curriculums;
+    }
+
+    public Certificado getCertificados() {
+        return certificados;
+    }
+
+    public void setCertificados(Certificado certificados) {
+        this.certificados = certificados;
     }
 }

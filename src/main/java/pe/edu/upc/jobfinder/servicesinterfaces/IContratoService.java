@@ -10,4 +10,5 @@ public interface IContratoService {
     public Contrato searchId(int id);
     public void update(Contrato contrato);
     public void delete(int id);
+    public List<Contrato> searchByContractType(String contractType);
 }

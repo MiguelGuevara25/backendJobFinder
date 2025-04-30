@@ -24,18 +24,21 @@ public class Detalle {
     @ManyToOne
     @JoinColumn(name = "idCurriculum")
     private Curriculum curriculums;
-    //private Certificado certificados;
 
+    @ManyToOne
+    @JoinColumn(name = "idCertificado")
+    private Certificado certificados;
 
     public Detalle() {
     }
 
-    public Detalle(int id, Experiencia experiencias, Estudio estudios, Habilidad habilidades, Curriculum curriculums) {
+    public Detalle(int id, Experiencia experiencias, Estudio estudios, Habilidad habilidades, Curriculum curriculums, Certificado certificados) {
         this.id = id;
         this.experiencias = experiencias;
         this.estudios = estudios;
         this.habilidades = habilidades;
         this.curriculums = curriculums;
+        this.certificados = certificados;
     }
 
     public int getId() {
@@ -76,5 +79,13 @@ public class Detalle {
 
     public void setCurriculums(Curriculum curriculums) {
         this.curriculums = curriculums;
+    }
+
+    public Certificado getCertificados() {
+        return certificados;
+    }
+
+    public void setCertificados(Certificado certificados) {
+        this.certificados = certificados;
     }
 }
