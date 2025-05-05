@@ -2,50 +2,42 @@ package pe.edu.upc.jobfinder.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name = "Rol")
-public class Rol {
+@Table(name = "roles", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "rol"})})
+public class Rol implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRol;
+    private int id;
 
-    @Column(name = "nombre", nullable = false,length = 250)
-    private String nombreRol;
+    private String rol;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    public Usuario usuarioRol;
+    @JoinColumn(name = "user_id",nullable = false)
+    private Usuario user;
 
-    public Rol() {
+    public int getId() {
+        return id;
     }
 
-    public Rol(int idRol, String nombreRol, Usuario usuarioRol) {
-        this.idRol = idRol;
-        this.nombreRol = nombreRol;
-        this.usuarioRol = usuarioRol;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getIdRol() {
-        return idRol;
+    public String getRol() {
+        return rol;
     }
 
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    public String getNombreRol() {
-        return nombreRol;
+    public Usuario getUser() {
+        return user;
     }
 
-    public void setNombreRol(String nombreRol) {
-        this.nombreRol = nombreRol;
-    }
-
-    public Usuario getUsuarioRol() {
-        return usuarioRol;
-    }
-
-    public void setUsuarioRol(Usuario usuarioRol) {
-        this.usuarioRol = usuarioRol;
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 }
