@@ -3,12 +3,16 @@ package pe.edu.upc.jobfinder.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.List;
+
 @Entity
-@Table(name = "Usuario")
-public class Usuario {
+@Table(name = "Users")
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
+
     @Column(name = "nombre", nullable = false, length = 250)
     private String nombreUsuario;
 
@@ -25,7 +29,7 @@ public class Usuario {
     private String direccionUsuario;
 
     @Column(name = "estado", nullable = false)
-    private boolean estadoUsuario;
+    private Boolean estadoUsuario;
 
     @Column(name = "usuario", nullable = false, length = 250)
     private String usuarioUsuario;
@@ -34,27 +38,14 @@ public class Usuario {
     private String contraseniaUsuario;
 
     @Column(name = "favorito", nullable = false)
-    private boolean favoritoUsuario;
+    private Boolean favoritoUsuario;
 
     @Column(name = "edad", nullable = false, length = 250)
     private int edadUsuario;
 
-    public Usuario() {
-    }
-
-    public Usuario(int idUsuario, String nombreUsuario, String apellidoUsuario, String correoUsuario, String telefonoUsuario, String direccionUsuario, boolean estadoUsuario, String usuarioUsuario, String contraseniaUsuario, boolean favoritoUsuario, int edadUsuario) {
-        this.idUsuario = idUsuario;
-        this.nombreUsuario = nombreUsuario;
-        this.apellidoUsuario = apellidoUsuario;
-        this.correoUsuario = correoUsuario;
-        this.telefonoUsuario = telefonoUsuario;
-        this.direccionUsuario = direccionUsuario;
-        this.estadoUsuario = estadoUsuario;
-        this.usuarioUsuario = usuarioUsuario;
-        this.contraseniaUsuario = contraseniaUsuario;
-        this.favoritoUsuario = favoritoUsuario;
-        this.edadUsuario = edadUsuario;
-    }
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Rol> roles;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -104,11 +95,11 @@ public class Usuario {
         this.direccionUsuario = direccionUsuario;
     }
 
-    public boolean isEstadoUsuario() {
+    public Boolean getEstadoUsuario() {
         return estadoUsuario;
     }
 
-    public void setEstadoUsuario(boolean estadoUsuario) {
+    public void setEstadoUsuario(Boolean estadoUsuario) {
         this.estadoUsuario = estadoUsuario;
     }
 
@@ -128,11 +119,11 @@ public class Usuario {
         this.contraseniaUsuario = contraseniaUsuario;
     }
 
-    public boolean isFavoritoUsuario() {
+    public Boolean getFavoritoUsuario() {
         return favoritoUsuario;
     }
 
-    public void setFavoritoUsuario(boolean favoritoUsuario) {
+    public void setFavoritoUsuario(Boolean favoritoUsuario) {
         this.favoritoUsuario = favoritoUsuario;
     }
 
@@ -142,6 +133,14 @@ public class Usuario {
 
     public void setEdadUsuario(int edadUsuario) {
         this.edadUsuario = edadUsuario;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }
 
