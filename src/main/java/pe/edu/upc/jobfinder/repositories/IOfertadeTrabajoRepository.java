@@ -13,5 +13,4 @@ public interface IOfertadeTrabajoRepository extends JpaRepository<OfertadeTrabaj
             "FROM OfertadeTrabajo o JOIN o.empresa e " +
             "WHERE o.location = :ubicacion AND o.typeofcontract = :tipoContrato")
     public List<String[]> buscarOfertasPorUbicacionYContratoConEmpresa(@Param("ubicacion") String ubicacion, @Param("tipoContrato") String tipoContrato);
-
 }

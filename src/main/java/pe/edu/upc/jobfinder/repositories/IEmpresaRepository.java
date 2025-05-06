@@ -21,5 +21,4 @@ public interface IEmpresaRepository extends JpaRepository<Empresa, Integer> {
             "WHERE e.location = :ubicacion " +
             "GROUP BY e.name, e.sector")
     public List<String[]> contarOfertasYPostulacionesPorEmpresa(@Param("ubicacion") String ubicacion);
-
 }

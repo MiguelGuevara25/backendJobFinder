@@ -17,6 +17,4 @@ public interface IPostulacionRepository extends JpaRepository<Postulacion, Integ
 
     @Query("SELECT p FROM Postulacion p WHERE p.acceptedcandidate = :aceptado")
     public List<Postulacion> buscarPostulacionesPorAceptacion(@Param("aceptado") Boolean aceptado);
-
-
 }
