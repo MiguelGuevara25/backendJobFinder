@@ -4,10 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.jobfinder.dtos.DuracionPromedioPorPuestoDTO;
 import pe.edu.upc.jobfinder.dtos.ExperienciaDTO;
+import pe.edu.upc.jobfinder.dtos.HabilidaVaciaDTO;
+import pe.edu.upc.jobfinder.dtos.PromedioExperienciaLaboralDTO;
 import pe.edu.upc.jobfinder.entities.Experiencia;
 import pe.edu.upc.jobfinder.servicesinterfaces.IExperienciaService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,5 +49,29 @@ public class ExperienciaController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         eS.delete(id);
+    }
+    @GetMapping("/duracion_promedio")
+    public List<DuracionPromedioPorPuestoDTO> duracionPromedioPorPuesto() {
+        List<String[]> filaLista=eS.DuracionPromedioPorPuesto();
+        List<DuracionPromedioPorPuestoDTO> dtoLista =new ArrayList<>();
+        for (String[] columna: filaLista) {
+            DuracionPromedioPorPuestoDTO dto = new DuracionPromedioPorPuestoDTO();
+            dto.setPuesto(columna[0]);
+            dto.setDuracion_promedio(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+    @GetMapping("/Promedio_experiencia_laboral")
+    public List<PromedioExperienciaLaboralDTO> promedioExperienciaLaboral() {
+        List<String[]> filaLista=eS.PromedioExperienciaLaboral();
+        List<PromedioExperienciaLaboralDTO> dtoLista =new ArrayList<>();
+        for (String[] columna: filaLista) {
+            PromedioExperienciaLaboralDTO dto = new PromedioExperienciaLaboralDTO();
+            dto.setId_usuario(Integer.parseInt(columna[0]));
+            dto.setCantidad(Long.parseLong(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }
