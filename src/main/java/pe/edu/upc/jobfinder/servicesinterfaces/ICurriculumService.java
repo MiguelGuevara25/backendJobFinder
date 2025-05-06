@@ -10,4 +10,5 @@ public interface ICurriculumService {
     public Curriculum buscarID(int idCurriculum);
     public void update(Curriculum curriculum);
     public void delete(int id);
+    public List<String[]> CurriculumByPromedio();
 }

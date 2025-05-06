@@ -36,4 +36,9 @@ public class CurriculumServiceImplement implements ICurriculumService {
     public void delete(int id) {
 
     }
+
+    @Override
+    public List<String[]> CurriculumByPromedio() {
+        return curriculumRepository.CurriculumByPromedio();
+    }
 }

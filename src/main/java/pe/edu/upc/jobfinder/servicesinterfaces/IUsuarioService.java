@@ -16,4 +16,8 @@ public interface IUsuarioService {
     public void eliminar(int idUsuario);
     public List<String[]> listaXactivos(boolean estado);
     public List<Usuario> buscar(String nombre);
+    public List<String[]> UsuariosXEntrevistasExitosas(String estado);
+    public List<String[]> UsuariosXDetalles(int id);
+    public List<String[]> UsuariosXcontratosActivos();
+
 }

@@ -47,4 +47,19 @@ public class UsuarioServiceImplement implements IUsuarioService{
     public List<Usuario> buscar(String nombre) {
         return usuarioRepository.buscar(nombre);
     }
+
+    @Override
+    public List<String[]> UsuariosXEntrevistasExitosas(String estado) {
+        return usuarioRepository.UsuariosXEntrevistasExitosas(estado);
+    }
+
+    @Override
+    public List<String[]> UsuariosXDetalles(int id) {
+        return usuarioRepository.UsuariosXDetalles(id);
+    }
+
+    @Override
+    public List<String[]> UsuariosXcontratosActivos() {
+        return usuarioRepository.UsuariosXcontratosActivos();
+    }
 }
