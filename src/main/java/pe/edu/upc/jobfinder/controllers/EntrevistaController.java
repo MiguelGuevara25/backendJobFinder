@@ -3,13 +3,17 @@ package pe.edu.upc.jobfinder.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.jobfinder.dtos.ContratoDTO;
-import pe.edu.upc.jobfinder.dtos.EntrevistaDTO;
+import pe.edu.upc.jobfinder.dtos.*;
 import pe.edu.upc.jobfinder.entities.Contrato;
 import pe.edu.upc.jobfinder.entities.Entrevista;
 import pe.edu.upc.jobfinder.servicesinterfaces.IContratoService;
 import pe.edu.upc.jobfinder.servicesinterfaces.IEntrevistaService;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,5 +54,34 @@ public class EntrevistaController {
     @DeleteMapping({"/{id}"})
     public void eliminar(@PathVariable int id) {
         eS.delete(id);
+    }
+
+    @GetMapping("/cantidades")
+    public List<CantidadEntrevistasDTO> cantidadEntrevistas() {
+        List<String[]> filaLista=eS.quantityInterview();
+        List<CantidadEntrevistasDTO> dtoLista= new ArrayList<>();
+        for (String[] columna:filaLista) {
+            CantidadEntrevistasDTO dto=new CantidadEntrevistasDTO();
+            dto.setQuantityInterview(Integer.parseInt(columna[0]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+    @GetMapping("/ultimas-30-dias")
+    public List<EntrevistaUltimos30DiasDTO> entrevistaUltimos30DiasDTO() {
+        List<String[]> filaLista=eS.interviewsLast30Days();
+        List<EntrevistaUltimos30DiasDTO> dtoLista= new ArrayList<>();
+        for (String[] columna:filaLista) {
+            EntrevistaUltimos30DiasDTO dto=new EntrevistaUltimos30DiasDTO();
+            dto.setDate(LocalDate.parse(columna[0]));
+            dto.setHour(LocalTime.parse(columna[1]));
+            dto.setName(columna[2]);
+            dto.setLastName(columna[3]);
+            dto.setPhone(columna[4]);
+            dto.setEmail(columna[5]);
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }
