@@ -39,7 +39,12 @@ public class ContratoServiceImplement implements IContratoService {
     }
 
     @Override
-    public List<Contrato> searchByContractType(String contractType) {
+    public List<String[]> searchByContractType(String contractType) {
         return cR.searchByContractType(contractType);
+    }
+
+    @Override
+    public List<String[]> searchSalary(Double salary) {
+        return cR.searchSalary(salary);
     }
 }
