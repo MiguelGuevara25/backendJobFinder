@@ -10,4 +10,6 @@ public interface IExperienciaService {
     public Experiencia searchId(int id);
     public void update (Experiencia e);
     public void delete (int id);
+    public List<String[]> DuracionPromedioPorPuesto();
+    public List<String[]> PromedioExperienciaLaboral();
 }

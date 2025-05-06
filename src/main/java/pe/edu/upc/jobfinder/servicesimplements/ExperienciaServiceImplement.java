@@ -38,4 +38,14 @@ public class ExperienciaServiceImplement implements IExperienciaService {
     public void delete(int id) {
         eR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> DuracionPromedioPorPuesto() {
+        return eR.DuracionPromedioPorPuesto();
+    }
+
+    @Override
+    public List<String[]> PromedioExperienciaLaboral() {
+        return eR.PromedioExperienciaLaboral();
+    }
 }
