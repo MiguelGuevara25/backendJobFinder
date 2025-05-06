@@ -10,4 +10,6 @@ public interface IEntrevistaService {
     public Entrevista searchId(int id);
     public void update(Entrevista entrevista);
     public void delete(int id);
+    public List<String[]> quantityInterview();
+    public List<String[]> interviewsLast30Days();
 }

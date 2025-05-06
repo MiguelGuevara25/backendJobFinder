@@ -38,4 +38,14 @@ public class EntrevistaServiceImplement implements IEntrevistaService {
     public void delete(int id) {
         eR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> quantityInterview() {
+        return eR.quantityInterview();
+    }
+
+    @Override
+    public List<String[]> interviewsLast30Days() {
+        return eR.interviewsLast30Days();
+    }
 }
