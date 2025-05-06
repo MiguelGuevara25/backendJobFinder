@@ -2,9 +2,11 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.UsuarioDTO;
 import pe.edu.upc.jobfinder.dtos.UsuariosActivosDTO;
+import pe.edu.upc.jobfinder.dtos.UsuariosEntrevistasAprovadasDTO;
 import pe.edu.upc.jobfinder.entities.Usuario;
 import pe.edu.upc.jobfinder.servicesinterfaces.IUsuarioService;
 
@@ -13,12 +15,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/Usuarios")
-public class UsuarioController {
+@RequestMapping("/usuarios")
+public class    UsuarioController {
     @Autowired
     IUsuarioService usuarioService;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> findAll() {
         return usuarioService.listar().stream().map(u -> {
             ModelMapper usuarioModelMapper = new ModelMapper();
@@ -72,5 +75,19 @@ public class UsuarioController {
             ModelMapper m = new ModelMapper();
             return m.map(h, UsuarioDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/entrevistasxaprovadas")
+    public List<UsuariosEntrevistasAprovadasDTO> EntrevistasAprovadas(@RequestParam String estado){
+        List<String[]> filaLista=usuarioService.UsuariosXEntrevistasExitosas(estado);
+        List<UsuariosEntrevistasAprovadasDTO> dtoListaa=new ArrayList<>();
+        for(String[] columna:filaLista){
+            UsuariosEntrevistasAprovadasDTO dto=new UsuariosEntrevistasAprovadasDTO();
+            dto.setId_usuario(Integer.parseInt(columna[0]));
+            dto.setNombre(columna[1]);
+            dto.setApellido(columna[2]);
+            dtoListaa.add(dto);
+        }
+        return dtoListaa;
     }
 }
