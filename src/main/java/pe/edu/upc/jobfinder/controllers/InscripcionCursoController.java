@@ -26,7 +26,9 @@ public class InscripcionCursoController {
             return m.map(x,InscripcionCursoDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping()
+    @PreAuthorize("hasAuthority('POSTULANTE')")
     public void insertar(@RequestBody InscripcionCursoDTO inscripcionCursoDTO) {
         ModelMapper m= new ModelMapper();
         InscripcionCurso iC=m.map(inscripcionCursoDTO,InscripcionCurso.class);

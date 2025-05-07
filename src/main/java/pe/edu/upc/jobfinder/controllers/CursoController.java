@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import pe.edu.upc.jobfinder.dtos.CantidadCursosPlataformaDTO;
+import pe.edu.upc.jobfinder.dtos.CantidadCursosPorEmpresaDTO;
 import pe.edu.upc.jobfinder.dtos.ContratoDTO;
 import pe.edu.upc.jobfinder.dtos.CursoDTO;
 
@@ -63,11 +64,16 @@ public class CursoController {
         return dtoLista;
     }
 
-    @GetMapping("/busquedas")
-    public List<CursoDTO> search(@RequestParam String nombre){
-        return cursoService.searchByNameCourse(nombre).stream().map(h->{
-            ModelMapper m = new ModelMapper();
-            return m.map(h, CursoDTO.class);
-        }).collect(Collectors.toList());
+    @GetMapping("/cantidadesempresas")
+    public List<CantidadCursosPorEmpresaDTO> listarCantidadCursosEmpresa() {
+        List<String[]> filaLista=cursoService.quantityCoursesByEnterprise();
+        List<CantidadCursosPorEmpresaDTO> dtoLista= new ArrayList<>();
+        for (String[] columna:filaLista) {
+            CantidadCursosPorEmpresaDTO dto=new CantidadCursosPorEmpresaDTO();
+            dto.setEmpresa(columna[0]);
+            dto.setTotalCursos(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

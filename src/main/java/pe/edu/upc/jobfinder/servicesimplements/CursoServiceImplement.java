@@ -43,7 +43,9 @@ public class CursoServiceImplement implements ICursoService {
     }
 
     @Override
-    public List<Curso> searchByNameCourse(String nameCourse) {
-        return ceR.searchByCourse(nameCourse);
+    public List<String[]> quantityCoursesByEnterprise() {
+        return ceR.quantityCoursesByEnterprise();
     }
+
+
 }
