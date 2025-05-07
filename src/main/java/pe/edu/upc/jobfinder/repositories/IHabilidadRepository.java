@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface IHabilidadRepository extends JpaRepository<Habilidad, Integer> {
+    //1.Este query busca cuántos usuarios tienen cada habilidad registrada en sus currículums.
+    //2.Detectar si hay brechas de habilidades (lo que poca gente sabe).
     @Query(value = "SELECT h.nombre, COUNT(*) AS cantidad_usuarios\n" +
             " FROM habilidad h\n" +
             " INNER JOIN detalle d ON h.id_habilidad = d.id_habilidad\n" +
@@ -17,6 +19,8 @@ public interface IHabilidadRepository extends JpaRepository<Habilidad, Integer> 
             " ORDER BY cantidad_usuarios DESC;", nativeQuery = true)
     public List<String[]> frecuencia_habilidad();
 
+    //1. Este query busca todas las habilidades que nadie ha usado.
+    //2. Te ayuda a limpiar o depurar tu base de datos (¿para qué guardar habilidades que nadie usa?).
     @Query(value = "SELECT h.nombre \n" +
             "FROM habilidad h\n" +
             "LEFT JOIN detalle d on h.id_habilidad = d.id_habilidad\n" +
