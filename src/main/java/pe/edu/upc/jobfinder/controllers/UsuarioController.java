@@ -20,10 +20,10 @@ public class    UsuarioController {
     IUsuarioService usuarioService;
 
     @GetMapping("/listar")
-    public List<UsuarioDTO> findAll() {
+    public List<UsuarioListarDTO> findAll() {
         return usuarioService.listar().stream().map(u -> {
             ModelMapper usuarioModelMapper = new ModelMapper();
-            return usuarioModelMapper.map(u, UsuarioDTO.class);
+            return usuarioModelMapper.map(u, UsuarioListarDTO.class);
         }).collect(Collectors.toList());
     }
 
