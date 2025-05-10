@@ -42,9 +42,4 @@ public class RolServiceImplement implements IRolService {
     public List<String[]> rolesXusuario() {
         return rolRepository.rolesXusuario();
     }
-
-    @Override
-    public List<String[]> promedioYcantidadXrol(String nombre) {
-        return rolRepository.promedioYcantidadXrol(nombre);
-    }
 }

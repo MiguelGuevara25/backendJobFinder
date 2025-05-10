@@ -2,9 +2,11 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.jobfinder.dtos.UsuarioDTO;
-import pe.edu.upc.jobfinder.dtos.UsuariosActivosDTO;
+import pe.edu.upc.jobfinder.dtos.*;
 import pe.edu.upc.jobfinder.entities.Usuario;
 import pe.edu.upc.jobfinder.servicesinterfaces.IUsuarioService;
 
@@ -13,16 +15,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/Usuarios")
-public class UsuarioController {
+@RequestMapping("/usuarios")
+@PreAuthorize("hasAuthority('ADMIN')")
+public class    UsuarioController {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Autowired
     IUsuarioService usuarioService;
 
     @GetMapping("/listar")
-    public List<UsuarioDTO> findAll() {
+    public List<UsuarioListarDTO> findAll() {
         return usuarioService.listar().stream().map(u -> {
             ModelMapper usuarioModelMapper = new ModelMapper();
-            return usuarioModelMapper.map(u, UsuarioDTO.class);
+            return usuarioModelMapper.map(u, UsuarioListarDTO.class);
         }).collect(Collectors.toList());
     }
 
@@ -30,6 +36,8 @@ public class UsuarioController {
     public void inserta(@RequestBody UsuarioDTO usuarioDTO) {
         ModelMapper usuarioModelMapper = new ModelMapper();
         Usuario usuario = usuarioModelMapper.map(usuarioDTO, Usuario.class);
+        String encryptedPassword = passwordEncoder.encode(usuario.getContraseniaUsuario());
+        usuario.setContraseniaUsuario(encryptedPassword);
         usuarioService.insertar(usuario);
     }
 
@@ -72,5 +80,54 @@ public class UsuarioController {
             ModelMapper m = new ModelMapper();
             return m.map(h, UsuarioDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/entrevistasxaprobadas")
+    public List<UsuariosEntrevistasAprovadasDTO> EntrevistasAprovadas(@RequestParam String estado){
+        List<String[]> filaLista=usuarioService.UsuariosXEntrevistasExitosas(estado);
+        List<UsuariosEntrevistasAprovadasDTO> dtoListaa=new ArrayList<>();
+        for(String[] columna:filaLista){
+            UsuariosEntrevistasAprovadasDTO dto=new UsuariosEntrevistasAprovadasDTO();
+            dto.setId_usuario(Integer.parseInt(columna[0]));
+            dto.setNombre(columna[1]);
+            dto.setApellido(columna[2]);
+            dtoListaa.add(dto);
+        }
+        return dtoListaa;
+    }
+    @GetMapping("/contratosactivos")
+    public List<UsuariosContratoActivoDTO> ContratoActivos(){
+        List<String[]> filaLista=usuarioService.UsuariosXcontratosActivos();
+        List<UsuariosContratoActivoDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            UsuariosContratoActivoDTO dto=new UsuariosContratoActivoDTO();
+            dto.setId_usuario(Integer.parseInt(columna[0]));
+            dto.setNombre(columna[1]);
+            dto.setApellido(columna[2]);
+            dto.setId_contrato(Integer.parseInt(columna[3]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+    @GetMapping("/detallesxusuarios")
+    public List<UsuarioDetallesDTO> UsuariosDetalles(){
+        List<String[]> filaLista=usuarioService.UsuariosXcontratosActivos();
+        List<UsuarioDetallesDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            UsuarioDetallesDTO dto=new UsuarioDetallesDTO();
+            dto.setId_usuario(Integer.parseInt(columna[0]));
+            dto.setNombre(columna[1]);
+            dto.setApellido(columna[2]);
+            dto.setPuesto(columna[3]);
+            dto.setEmpresa(columna[4]);
+            dto.setTituloObtenido(columna[5]);
+            dto.setCentroDeEstudios(columna[6]);
+            dto.setHabilidad(columna[7]);
+            dto.setCertificado(columna[8]);
+            dto.setEntidadCertificaro(columna[9]);
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

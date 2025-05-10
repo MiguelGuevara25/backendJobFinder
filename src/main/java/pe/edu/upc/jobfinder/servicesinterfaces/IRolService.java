@@ -12,6 +12,4 @@ public interface IRolService {
     public void update(Rol rol);
     public void delete(int id);
     public List<String[]> rolesXusuario();
-    public List<String[]> promedioYcantidadXrol(String nombre);
-
 }

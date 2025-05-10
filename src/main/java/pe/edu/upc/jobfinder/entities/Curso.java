@@ -8,13 +8,13 @@ public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCurso;
-    @Column(name = "tituloCurso", nullable = false, length = 50)
+    @Column(name = "tituloCurso", nullable = false, length = 150)
     private String tituloCurso;
-    @Column(name = "descripcionCurso", nullable = false, length = 50)
+    @Column(name = "descripcionCurso", nullable = false, length = 150)
     private String descripcionCurso;
-    @Column(name = "plataformaCurso", nullable = false, length = 50)
+    @Column(name = "plataformaCurso", nullable = false, length = 150)
     private String plataformaCurso;
-    @Column(name = "linkCurso", nullable = false, length = 50)
+    @Column(name = "linkCurso", nullable = false, length = 150)
     private String linkCurso;
 
     @ManyToOne

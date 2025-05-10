@@ -8,14 +8,9 @@ import pe.edu.upc.jobfinder.entities.Rol;
 import java.util.List;
 
 public interface IRolRepository extends JpaRepository<Rol, Integer> {
-    @Query(value = "SELECT u.id_usuario, r.nombre\n" +
-            " FROM rol r\n" +
-            " JOIN usuario u ON u.id_usuario = r.id_usuario", nativeQuery = true)
+    @Query(value = "SELECT u.id_usuario, r.rol\n" +
+            " FROM roles r\n" +
+            " JOIN users u ON u.id_usuario = r.user_id", nativeQuery = true)
     public List<String[]> rolesXusuario();
 
-    @Query(value = "SELECT avg(u.edad), count(*)\n" +
-            " FROM rol r\n" +
-            " JOIN usuario u ON u.id_usuario = r.id_usuario\n" +
-            " WHERE r.nombre ILIKE :nombre%", nativeQuery = true)
-    public List<String[]> promedioYcantidadXrol(@Param("nombre") String nombre);
 }

@@ -10,13 +10,13 @@ public class Certificado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCertificado;
-    @Column(name = "nombreCertificado", nullable = false, length = 50)
+    @Column(name = "nombreCertificado", nullable = false, length = 150)
     private String nombreCertificado;
-    @Column(name = "entidadEmisoraCertificado", nullable = false, length = 50)
+    @Column(name = "entidadEmisoraCertificado", nullable = false, length = 150)
     private String entidadEmisoraCertificado;
     @Column(name = "fechaEmisionCertificado", nullable = false)
     private LocalDate fechaEmisionCertificado;
-    @Column(name = "fechaVencimientoCertificado", nullable = false)
+    @Column(name = "fechaVencimientoCertificado")
     private LocalDate fechaVencimientoCertificado;
 
     public Certificado() {

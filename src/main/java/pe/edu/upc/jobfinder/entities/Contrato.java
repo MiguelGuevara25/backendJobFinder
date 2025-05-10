@@ -16,7 +16,7 @@ public class Contrato {
     private LocalDate endDate;
     @Column(name = "salary", nullable = false)
     private Double salary;
-    @Column(name = "contractType", nullable = false, length = 100)
+    @Column(name = "contractType", nullable = false, length = 150)
     private String contractType;
 
     @OneToOne
