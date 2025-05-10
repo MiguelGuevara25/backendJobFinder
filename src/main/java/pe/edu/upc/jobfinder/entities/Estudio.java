@@ -11,10 +11,10 @@ public class Estudio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "title_obtained",nullable = false, length = 50)
+    @Column(name = "title_obtained",nullable = false, length = 150)
     private String title_obtained;
 
-    @Column(name = "study_center",nullable = false, length = 50)
+    @Column(name = "study_center",nullable = false, length = 150)
     private String study_center;
 
     @Column(name = "start_date",nullable = false)

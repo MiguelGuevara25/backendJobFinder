@@ -11,10 +11,10 @@ public class Experiencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "job",nullable = false, length = 25)
+    @Column(name = "job",nullable = false, length = 125)
     private String job;
 
-    @Column(name = "enterprise",nullable = false, length = 30)
+    @Column(name = "enterprise",nullable = false, length = 130)
     private String enterprise;
 
     @Column(name = "startDate",nullable = false)
@@ -23,7 +23,7 @@ public class Experiencia {
     @Column(name = "endDate",nullable = false)
     private LocalDate endDate;
 
-    @Column(name = "description",nullable = false, length = 50)
+    @Column(name = "description",nullable = false, length = 150)
     private String description;
 
     public Experiencia() {
