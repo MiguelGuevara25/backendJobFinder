@@ -13,9 +13,4 @@ public interface IRolRepository extends JpaRepository<Rol, Integer> {
             " JOIN users u ON u.id_usuario = r.user_id", nativeQuery = true)
     public List<String[]> rolesXusuario();
 
-    @Query(value = "SELECT avg(u.edad), count(*)\n" +
-            " FROM roles r\n" +
-            " JOIN users u ON u.id_usuario = r.user_id\n" +
-            " WHERE r.rol ILIKE :nombre%", nativeQuery = true)
-    public List<String[]> promedioYcantidadXrol(@Param("nombre") String nombre);
 }

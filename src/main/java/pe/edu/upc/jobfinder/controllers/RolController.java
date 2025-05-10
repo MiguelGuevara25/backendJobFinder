@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/roles")
-@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('ADMIN')")  
 public class RolController {
     @Autowired
     private IRolService rolService;
@@ -62,19 +62,6 @@ public class RolController {
             RolesDeUsuarioDTO dto=new RolesDeUsuarioDTO();
             dto.setIdUsuario(Integer.parseInt(columna[0]));
             dto.setNombreRol(columna[1]);
-            dtoLista.add(dto);
-        }
-        return dtoLista;
-    }
-
-    @GetMapping("/promedio")
-    public List<RolesPromYcantDTO> rolesPromYcant(@RequestParam String tipodeRol){
-        List<String[]> filaLista=rolService.promedioYcantidadXrol(tipodeRol);
-        List<RolesPromYcantDTO> dtoLista =new ArrayList<>();
-        for(String[] columna:filaLista){
-            RolesPromYcantDTO dto=new RolesPromYcantDTO();
-            dto.setPromedio(Double.parseDouble(columna[0]));
-            dto.setCantidad(Integer.parseInt(columna[1]));
             dtoLista.add(dto);
         }
         return dtoLista;

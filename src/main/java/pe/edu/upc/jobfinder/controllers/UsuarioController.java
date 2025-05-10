@@ -3,6 +3,8 @@ package pe.edu.upc.jobfinder.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.*;
 import pe.edu.upc.jobfinder.entities.Usuario;
@@ -17,13 +19,16 @@ import java.util.stream.Collectors;
 @PreAuthorize("hasAuthority('ADMIN')")
 public class    UsuarioController {
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     IUsuarioService usuarioService;
 
     @GetMapping("/listar")
-    public List<UsuarioDTO> findAll() {
+    public List<UsuarioListarDTO> findAll() {
         return usuarioService.listar().stream().map(u -> {
             ModelMapper usuarioModelMapper = new ModelMapper();
-            return usuarioModelMapper.map(u, UsuarioDTO.class);
+            return usuarioModelMapper.map(u, UsuarioListarDTO.class);
         }).collect(Collectors.toList());
     }
 
@@ -31,6 +36,8 @@ public class    UsuarioController {
     public void inserta(@RequestBody UsuarioDTO usuarioDTO) {
         ModelMapper usuarioModelMapper = new ModelMapper();
         Usuario usuario = usuarioModelMapper.map(usuarioDTO, Usuario.class);
+        String encryptedPassword = passwordEncoder.encode(usuario.getContraseniaUsuario());
+        usuario.setContraseniaUsuario(encryptedPassword);
         usuarioService.insertar(usuario);
     }
 
