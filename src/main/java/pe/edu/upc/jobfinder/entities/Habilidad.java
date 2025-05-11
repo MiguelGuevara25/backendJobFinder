@@ -9,7 +9,7 @@ public class Habilidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_habilidad;
 
-    @Column(name = "nombre", nullable = false, length = 25)
+    @Column(name = "nombre", nullable = false, length = 125)
     private String nombre;
 
     public Habilidad() {
