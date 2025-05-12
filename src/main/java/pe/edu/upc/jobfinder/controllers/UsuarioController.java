@@ -24,7 +24,7 @@ public class    UsuarioController {
     @Autowired
     IUsuarioService usuarioService;
 
-    @GetMapping("/listar")
+    @GetMapping()
     public List<UsuarioListarDTO> findAll() {
         return usuarioService.listar().stream().map(u -> {
             ModelMapper usuarioModelMapper = new ModelMapper();
