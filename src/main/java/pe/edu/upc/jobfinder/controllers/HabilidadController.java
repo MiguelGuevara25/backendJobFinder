@@ -2,6 +2,7 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.FrecuenciaHabilidadDTO;
 import pe.edu.upc.jobfinder.dtos.HabilidaVaciaDTO;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/habilidades")
+@PreAuthorize("hasAuthority('POSTULANTE')")
 public class HabilidadController {
     @Autowired
     private IHabilidadService hS;

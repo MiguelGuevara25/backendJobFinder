@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/curriculum")
-@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('POSTULANTE')")
 public class CurriculumController {
     @Autowired
     private ICurriculumService curriculumService;

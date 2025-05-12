@@ -70,8 +70,8 @@ public class EmpresaController {
         List<EmpresaUbicacionDTO> dtoLista= new ArrayList<>();
         for (String[] columna:filaLista) {
             EmpresaUbicacionDTO dto=new EmpresaUbicacionDTO();
-            dto.setSector(columna[0]);
-            dto.setLocation(columna[1]);
+            dto.setLocation(columna[0]);
+            dto.setSector(columna[1]);
             dto.setCantidadEmpresas(Integer.parseInt(columna[2]));
             dtoLista.add(dto);
         }

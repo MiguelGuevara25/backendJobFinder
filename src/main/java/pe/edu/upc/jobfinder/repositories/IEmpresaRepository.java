@@ -15,7 +15,7 @@ public interface IEmpresaRepository extends JpaRepository<Empresa, Integer> {
             "FROM \n" +
             "    empresa c\n" +
             "WHERE \n" +
-            "    c.sector LIKE %:sector%;", nativeQuery = true)
+            "    c.sector LIKE %:nombre%;", nativeQuery = true)
     public List<String[]> buscarPorSector(@Param("nombre") String nombre);
 
     @Query(value = "SELECT \n" +
@@ -25,7 +25,7 @@ public interface IEmpresaRepository extends JpaRepository<Empresa, Integer> {
             "FROM \n" +
             "    empresa c\n" +
             "WHERE \n" +
-            "    c.location = %:ubicacion%\n" +
+            "    c.location = %:sector%\n" +
             "GROUP BY \n" +
             "    c.location,\n" +
             "    c.sector\n" +

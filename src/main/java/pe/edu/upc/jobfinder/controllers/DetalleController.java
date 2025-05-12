@@ -2,6 +2,7 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.ContratoDTO;
 import pe.edu.upc.jobfinder.dtos.DetalleDTO;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/detalles")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class DetalleController {
     @Autowired
     private IDetalleService dS;

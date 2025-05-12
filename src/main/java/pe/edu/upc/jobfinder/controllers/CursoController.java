@@ -2,6 +2,7 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import pe.edu.upc.jobfinder.dtos.CantidadCursosPlataformaDTO;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cursos")
+@PreAuthorize("hasAuthority('EMPRESA')")
 public class CursoController {
     @Autowired
     private ICursoService cursoService;
