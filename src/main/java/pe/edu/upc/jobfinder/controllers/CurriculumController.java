@@ -39,9 +39,10 @@ public class CurriculumController {
     }
 
     @GetMapping("/{id}")
-    public ContratoDTO listarId(@PathVariable int id) {
+    public CurriculumDTO listarId(@PathVariable("id") int id) {
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(curriculumService.buscarID(id), ContratoDTO.class);
+        CurriculumDTO dto = modelMapper.map(curriculumService.buscarID(id), CurriculumDTO.class);
+        return dto;
     }
 
     @PutMapping
