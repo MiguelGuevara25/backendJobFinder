@@ -34,4 +34,12 @@ public class EmpresaServiceImplement implements IEmpresaService {
     public void delete(int id) {
         eR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> buscarPorSector(String nombre) {
+        return eR.buscarPorSector(nombre);}
+
+    @Override
+    public List<String[]> contarEmpresasPorUbicacion(String sector) {
+        return eR.contarEmpresasPorUbicacion(sector);}
 }
