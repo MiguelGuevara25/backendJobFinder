@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/empresas")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class EmpresaController {
 
     @Autowired
     private IEmpresaService eS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<EmpresaDTO> listar() {
         return eS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
