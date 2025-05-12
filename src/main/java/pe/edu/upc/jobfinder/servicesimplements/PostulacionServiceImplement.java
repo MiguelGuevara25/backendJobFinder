@@ -30,7 +30,15 @@ public class PostulacionServiceImplement implements IPostulacionService {
     public void delete(int id) {pR.deleteById(id);}
 
     @Override
-    public List<Postulacion> search(String name) {
-        return List.of();
+    public List<String[]> contarPostulacionesPorEstado(Boolean aceptado, Boolean rechazado) {
+        return pR.contarPostulacionesPorEstado(aceptado, rechazado);
     }
+
+    @Override
+    public List<Postulacion> buscarPostulacionesPorintervalodedias() {
+        return pR.buscarPostulacionesporintervalo();
+    }
+
+
+
 }
