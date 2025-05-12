@@ -20,11 +20,12 @@ public class CurriculumServiceImplement implements ICurriculumService {
 
     @Override
     public void insert(Curriculum curriculum) {
+        curriculumRepository.save(curriculum);
     }
 
     @Override
     public Curriculum buscarID(int idCurriculum) {
-        return null;
+        return curriculumRepository.findById(idCurriculum).orElse(new Curriculum());
     }
 
     @Override
