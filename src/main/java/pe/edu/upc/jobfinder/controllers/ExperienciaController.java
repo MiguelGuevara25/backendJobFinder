@@ -2,6 +2,7 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.DuracionPromedioPorPuestoDTO;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/experiencias")
+@PreAuthorize("hasAuthority('POSTULANTE')")
 public class ExperienciaController {
     @Autowired
     private IExperienciaService eS;
