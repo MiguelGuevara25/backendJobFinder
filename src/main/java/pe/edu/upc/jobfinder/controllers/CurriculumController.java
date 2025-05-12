@@ -32,7 +32,7 @@ public class CurriculumController {
     }
 
     @PostMapping
-    public void insertar(@RequestBody ContratoDTO dto) {
+    public void insertar(@RequestBody CurriculumDTO dto) {
         ModelMapper modelMapper = new ModelMapper();
         Curriculum curriculum = modelMapper.map(dto, Curriculum.class);
         curriculumService.insert(curriculum);
@@ -46,7 +46,7 @@ public class CurriculumController {
     }
 
     @PutMapping
-    public void modificar(@RequestBody ContratoDTO dto) {
+    public void modificar(@RequestBody CurriculumDTO dto) {
         ModelMapper m = new ModelMapper();
         Curriculum curriculum = m.map(dto, Curriculum.class);
         curriculumService.update(curriculum);
