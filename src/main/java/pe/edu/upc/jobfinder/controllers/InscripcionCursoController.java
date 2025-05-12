@@ -2,6 +2,7 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.*;
 
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/inscripcioncursos")
+@PreAuthorize("hasAuthority('POSTULANTE')")
 public class InscripcionCursoController {
     @Autowired
     private IInscripcionCursoService inscripcionCursoService;

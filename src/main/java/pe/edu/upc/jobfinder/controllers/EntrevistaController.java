@@ -2,6 +2,7 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.*;
 import pe.edu.upc.jobfinder.entities.Contrato;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/entrevistas")
+@PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE')")
 public class EntrevistaController {
     @Autowired
     private IEntrevistaService eS;
