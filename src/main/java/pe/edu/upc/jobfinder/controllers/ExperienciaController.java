@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/experiencias")
-@PreAuthorize("hasAuthority('POSTULANTE')")
 public class ExperienciaController {
     @Autowired
     private IExperienciaService eS;
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping
     public List<ExperienciaDTO> listar() {
         return eS.list().stream().map(x -> {
@@ -30,24 +30,32 @@ public class ExperienciaController {
             return m.map(x, ExperienciaDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @PreAuthorize("hasAnyAuthority('POSTULANTE')")
     @PostMapping
     public void insertar(@RequestBody ExperienciaDTO dto) {
         ModelMapper m = new ModelMapper();
         Experiencia e = m.map(dto, Experiencia.class);
         eS.insert(e);
     }
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping("/{id}")
-    public ExperienciaDTO listarId(@PathVariable("id") int id){
+    public ExperienciaDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         ExperienciaDTO dto = m.map(eS.searchId(id), ExperienciaDTO.class);
         return dto;
     }
+
+    @PreAuthorize("hasAnyAuthority('POSTULANTE')")
     @PutMapping
     public void modificar(@RequestBody ExperienciaDTO dto) {
         ModelMapper m = new ModelMapper();
         Experiencia e = m.map(dto, Experiencia.class);
         eS.insert(e);
     }
+
+    @PreAuthorize("hasAnyAuthority('POSTULANTE'")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         eS.delete(id);
@@ -64,6 +72,8 @@ public class ExperienciaController {
         }
         return dtoLista;
     }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/Promedio_experiencia_laboral")
     public List<PromedioExperienciaLaboralDTO> promedioExperienciaLaboral() {
         List<String[]> filaLista=eS.PromedioExperienciaLaboral();

@@ -9,18 +9,17 @@ import pe.edu.upc.jobfinder.entities.Contrato;
 import pe.edu.upc.jobfinder.servicesinterfaces.IContratoService;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/contratos")
-@PreAuthorize("hasAuthority('EMPRESA')")
 public class ContratoController {
     @Autowired
     private IContratoService cS;
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping
     public List<ContratoDTO> listar(){
         return cS.list().stream().map(x->{
@@ -29,6 +28,7 @@ public class ContratoController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA')")
     @PostMapping
     public void insertar(@RequestBody ContratoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -36,12 +36,14 @@ public class ContratoController {
         cS.insert(c);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping("/{id}")
     public ContratoDTO listarId(@PathVariable int id) {
         ModelMapper m = new ModelMapper();
         return m.map(cS.searchId(id), ContratoDTO.class);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @PutMapping
     public void modificar(@RequestBody ContratoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -49,11 +51,13 @@ public class ContratoController {
         cS.update(c);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @DeleteMapping({"/{id}"})
     public void eliminar(@PathVariable int id) {
         cS.delete(id);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping("/tipos-contrato")
     public List<TipoContratoDTO> buscarTipoContrato(@RequestParam String contractType) {
         List<String[]> filaLista =cS.searchByContractType(contractType);
@@ -68,6 +72,7 @@ public class ContratoController {
         return dtoLista;
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping("/buscar-salario")
     public List<BuscarSalarioDTO> buscarSalario(@RequestParam Double salary) {
         List<String[]> filaLista = cS.searchSalary(salary);

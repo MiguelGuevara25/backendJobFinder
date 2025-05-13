@@ -27,7 +27,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query(value = "SELECT u.id_usuario, u.nombre, u.apellido\n" +
             " FROM users u\n" +
             " JOIN entrevista e ON u.id_usuario = e.id_usuario\n" +
-            " WHERE e.result = :estado\n" +
+            " WHERE e.result ILIKE :estado\n" +
             " GROUP BY u.id_usuario, u.nombre, u.apellido", nativeQuery = true)
     public List<String[]> UsuariosXEntrevistasExitosas(@Param("estado")String estado);
 

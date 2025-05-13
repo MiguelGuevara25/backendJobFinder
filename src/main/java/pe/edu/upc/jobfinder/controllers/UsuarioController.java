@@ -3,7 +3,6 @@ package pe.edu.upc.jobfinder.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.*;
@@ -16,7 +15,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class    UsuarioController {
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -24,6 +22,7 @@ public class    UsuarioController {
     @Autowired
     IUsuarioService usuarioService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping()
     public List<UsuarioListarDTO> findAll() {
         return usuarioService.listar().stream().map(u -> {
@@ -32,6 +31,7 @@ public class    UsuarioController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'POSTULANTE', 'EMPRESA')")
     @PostMapping
     public void inserta(@RequestBody UsuarioDTO usuarioDTO) {
         ModelMapper usuarioModelMapper = new ModelMapper();
@@ -41,6 +41,7 @@ public class    UsuarioController {
         usuarioService.insertar(usuario);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'POSTULANTE', 'EMPRESA')")
     @GetMapping({"/{id}"})
     public UsuarioDTO buscaPorId(@PathVariable("id") int idUsuario) {
         ModelMapper usuarioModelMapper = new ModelMapper();
@@ -48,6 +49,7 @@ public class    UsuarioController {
         return usuarioDTO;
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'POSTULANTE', 'EMPRESA')")
     @PutMapping
     public void modificar(@RequestBody UsuarioDTO usuarioDTO) {
         ModelMapper usuarioModelMapper = new ModelMapper();
@@ -55,11 +57,13 @@ public class    UsuarioController {
         usuarioService.insertar(usuario);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int idUsuario) {
         usuarioService.eliminar(idUsuario);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/activos")
     public List<UsuariosActivosDTO> buscar(@RequestParam boolean estado){
         List<String[]> filaLista=usuarioService.listaXactivos(estado);
@@ -74,6 +78,7 @@ public class    UsuarioController {
         return dtoLista;
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'EMPRESA')")
     @GetMapping("/busquedas")
     public List<UsuarioDTO> buscar(@RequestParam String n){
         return usuarioService.buscar(n).stream().map(h->{
@@ -82,6 +87,7 @@ public class    UsuarioController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/entrevistasxaprobadas")
     public List<UsuariosEntrevistasAprovadasDTO> EntrevistasAprovadas(@RequestParam String estado){
         List<String[]> filaLista=usuarioService.UsuariosXEntrevistasExitosas(estado);
@@ -95,6 +101,8 @@ public class    UsuarioController {
         }
         return dtoListaa;
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/contratosactivos")
     public List<UsuariosContratoActivoDTO> ContratoActivos(){
         List<String[]> filaLista=usuarioService.UsuariosXcontratosActivos();
@@ -110,6 +118,7 @@ public class    UsuarioController {
         return dtoLista;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/detallesxusuarios")
     public List<UsuarioDetallesDTO> UsuariosDetalles(){
         List<String[]> filaLista=usuarioService.UsuariosXcontratosActivos();

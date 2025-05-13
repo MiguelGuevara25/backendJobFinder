@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/detalles")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class DetalleController {
     @Autowired
     private IDetalleService dS;
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE','ADMIN')")
     @GetMapping
     public List<DetalleDTO> listar(){
         return dS.list().stream().map(x->{
@@ -29,6 +29,7 @@ public class DetalleController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE','ADMIN')")
     @PostMapping
     public void insertar(@RequestBody DetalleDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -36,12 +37,14 @@ public class DetalleController {
         dS.insert(d);
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE','ADMIN')")
     @GetMapping("/{id}")
     public DetalleDTO listarId(@PathVariable int id) {
         ModelMapper m = new ModelMapper();
         return m.map(dS.searchId(id), DetalleDTO.class);
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE','ADMIN')")
     @PutMapping
     public void modificar(@RequestBody DetalleDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -49,6 +52,7 @@ public class DetalleController {
         dS.update(d);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @DeleteMapping({"/{id}"})
     public void eliminar(@PathVariable int id) {
         dS.delete(id);
