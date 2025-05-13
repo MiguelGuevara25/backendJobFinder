@@ -24,10 +24,12 @@ public interface IEstudioRepository extends JpaRepository<Estudio, Integer> {
     //2.te da un ranking de las instituciones más frecuentes, lo cual es valioso si quieres entender
     //tu base de datos y actuar en base a eso.
 
-    @Query(value  = "SELECT e.study_center, COUNT(*) AS veces_registrada\n" +
-            " FROM estudio e\n" +
-            " GROUP BY e.study_center\n" +
-            " ORDER BY veces_registrada DESC;" ,nativeQuery = true)
+    @Query(value = "SELECT e.study_center, COUNT(*) AS veces_registrada " +
+            "FROM estudio e " +
+            "GROUP BY e.study_center " +
+            "HAVING COUNT(*) = (SELECT MAX(veces_registrada) " +
+            "FROM (SELECT COUNT(*) AS veces_registrada FROM estudio GROUP BY study_center) AS subquery) " +
+            "ORDER BY veces_registrada DESC;", nativeQuery = true)
     public List<String[]> institucionesMasFrecuentes();
 
 }

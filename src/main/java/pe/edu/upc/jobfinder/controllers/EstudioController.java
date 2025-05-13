@@ -57,7 +57,7 @@ public class EstudioController {
     }
 
     @GetMapping("/buscarInstitucion")
-    public List<CantidadCentroEstudioDTO> buscarCentroEstudio(String institucion) {
+    public List<CantidadCentroEstudioDTO> buscarCentroEstudio(@RequestParam("institucion") String institucion) {
         List<String []> filaLista = eS.buscarCentro(institucion);
         List<CantidadCentroEstudioDTO> dtoLista = new ArrayList<>();
         for (String[] columna : filaLista) {
