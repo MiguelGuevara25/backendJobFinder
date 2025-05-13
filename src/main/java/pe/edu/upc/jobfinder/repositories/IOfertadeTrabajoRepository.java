@@ -11,7 +11,7 @@ public interface IOfertadeTrabajoRepository extends JpaRepository<OfertadeTrabaj
             "FROM ofertade_trabajo o\n" +
             "JOIN empresa e ON o.id_empresa = e.id\n" +
             "WHERE o.salary = '3000' AND o.location = 'Lima';", nativeQuery =true)
-    public List<OfertadeTrabajo> buscarOfertasPorSalarioYUbicacion(@Param("salarioMinimo") double salarioMinimo, @Param("ubicacion") String ubicacion);
+    public List<String[]> buscarOfertasPorSalarioYUbicacion(@Param("salarioMinimo") double salarioMinimo, @Param("ubicacion") String ubicacion);
     @Query(value = "SELECT o.name, o.location, o.typeofcontract AS empresa_name\n" +
             "FROM ofertade_trabajo o\n" +
             "JOIN empresa e ON o.id_empresa = e.id\n" +

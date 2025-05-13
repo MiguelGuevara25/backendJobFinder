@@ -30,7 +30,7 @@ public class OfertadeTrabajoServiceImplement implements IOfertadeTrabajoService 
 
 
     @Override
-    public List<OfertadeTrabajo> buscarOfertasPorSalarioYUbicacion(double salarioMinimo, String ubicacion)
+    public List<String[]> buscarOfertasPorSalarioYUbicacion(double salarioMinimo, String ubicacion)
     {return oR.buscarOfertasPorSalarioYUbicacion(salarioMinimo, ubicacion);}
 
     @Override
