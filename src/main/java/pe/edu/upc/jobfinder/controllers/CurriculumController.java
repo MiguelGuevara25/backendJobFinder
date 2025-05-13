@@ -5,10 +5,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.jobfinder.dtos.ContratoDTO;
 import pe.edu.upc.jobfinder.dtos.CurriculumDTO;
 import pe.edu.upc.jobfinder.dtos.CurriculumPromedioDTO;
-import pe.edu.upc.jobfinder.dtos.UsuariosEntrevistasAprovadasDTO;
 import pe.edu.upc.jobfinder.entities.Curriculum;
 import pe.edu.upc.jobfinder.servicesinterfaces.ICurriculumService;
 
@@ -18,11 +16,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/curriculum")
-@PreAuthorize("hasAuthority('POSTULANTE')")
 public class CurriculumController {
     @Autowired
     private ICurriculumService curriculumService;
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping()
     public List<CurriculumDTO> listar() {
         return curriculumService.listar().stream().map(curriculum -> {
@@ -31,6 +29,7 @@ public class CurriculumController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE')")
     @PostMapping
     public void insertar(@RequestBody CurriculumDTO dto) {
         ModelMapper modelMapper = new ModelMapper();
@@ -38,6 +37,7 @@ public class CurriculumController {
         curriculumService.insert(curriculum);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping("/{id}")
     public CurriculumDTO listarId(@PathVariable("id") int id) {
         ModelMapper modelMapper = new ModelMapper();
@@ -45,6 +45,7 @@ public class CurriculumController {
         return dto;
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE')")
     @PutMapping
     public void modificar(@RequestBody CurriculumDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -52,11 +53,13 @@ public class CurriculumController {
         curriculumService.update(curriculum);
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE','ADMIN')")
     @DeleteMapping({"/{id}"})
     public void eliminar(@PathVariable int id) {
         curriculumService.delete(id);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping("/Promedio")
     public List<CurriculumPromedioDTO> curriculumPromedios() {
         List<String[]> filaLista=curriculumService.CurriculumByPromedio();

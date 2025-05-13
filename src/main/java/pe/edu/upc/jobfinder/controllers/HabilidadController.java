@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/habilidades")
-@PreAuthorize("hasAuthority('POSTULANTE')")
 public class HabilidadController {
     @Autowired
     private IHabilidadService hS;
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping
     public List<HabilidadDTO> listar() {
         return hS.list().stream().map(x -> {
@@ -29,6 +29,7 @@ public class HabilidadController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE')")
     @PostMapping
     public void insertar(@RequestBody HabilidadDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -36,6 +37,7 @@ public class HabilidadController {
         hS.insert(h);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping("/{id}")
     public HabilidadDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
@@ -43,6 +45,7 @@ public class HabilidadController {
         return dto;
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE')")
     @PutMapping
     public void modificar(@RequestBody HabilidadDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -50,11 +53,13 @@ public class HabilidadController {
         hS.update(h);
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         hS.delete(id);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/frecuencia_por_usuario")
     public List<FrecuenciaHabilidadDTO> listarFrecuenciaPorUsuario() {
         List<String[]> filaLista=hS.frecuencia_habilidad();
@@ -68,6 +73,7 @@ public class HabilidadController {
         return dtoLista;
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/habilidad_nulas")
     public List<HabilidaVaciaDTO> habilidadVacia() {
         List<String[]> filaLista=hS.habilidad_sin_usuarios();

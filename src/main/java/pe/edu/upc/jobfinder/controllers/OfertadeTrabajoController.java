@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ofertadetrabajo")
-@PreAuthorize("hasAuthority('EMPRESA')")
 public class OfertadeTrabajoController {
     @Autowired
     private IOfertadeTrabajoService oS;
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping
     public List<OfertadeTrabajoDTO> listar() {
         return oS.list().stream().map(x -> {
@@ -28,24 +28,32 @@ public class OfertadeTrabajoController {
             return m.map(x, OfertadeTrabajoDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @PostMapping
     public void insertar(@RequestBody OfertadeTrabajoDTO dto) {
         ModelMapper m = new ModelMapper();
         OfertadeTrabajo a = m.map(dto, OfertadeTrabajo.class);
         oS.insert(a);
     }
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping("/{id}")
     public OfertadeTrabajoDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         OfertadeTrabajoDTO dto = m.map(oS.searchId(id), OfertadeTrabajoDTO.class);
         return dto;
     }
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @PutMapping
     public void modificar(@RequestBody OfertadeTrabajoDTO dto) {
         ModelMapper m = new ModelMapper();
         OfertadeTrabajo a = m.map(dto, OfertadeTrabajo.class);
         oS.update(a);
     }
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         oS.delete(id);
