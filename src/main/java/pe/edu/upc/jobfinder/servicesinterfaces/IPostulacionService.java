@@ -13,5 +13,5 @@ public interface IPostulacionService {
         public void update(Postulacion Postulacion);
         public void delete(int id);
         public List<String[]> contarPostulacionesPorEstado(Boolean aceptado, Boolean rechazado);
-        public List<Postulacion> buscarPostulacionesPorintervalodedias();
+        public List<String[]> buscarPostulacionesPorintervalodedias();
 }

@@ -22,5 +22,6 @@ public interface IPostulacionRepository extends JpaRepository<Postulacion, Integ
             "FROM postulacion\n" +
             "WHERE date BETWEEN CURRENT_DATE - INTERVAL '9 days' AND CURRENT_DATE\n" +
             "ORDER BY date DESC", nativeQuery = true)
-    public List<Postulacion> buscarPostulacionesporintervalo();
+    public List<String[]> buscarPostulacionesPorintervalodedias();
+
 }

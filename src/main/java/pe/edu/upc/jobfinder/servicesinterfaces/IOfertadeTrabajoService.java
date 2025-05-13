@@ -13,6 +13,6 @@ public interface IOfertadeTrabajoService {
     public OfertadeTrabajo searchId(int id);
     public void update(OfertadeTrabajo OfertadeTrabajo);
     public void delete(int id);
-    public List<OfertadeTrabajo> buscarOfertasPorSalarioYUbicacion(double salarioMinimo, String ubicacion);
+    public List<String[]> buscarOfertasPorSalarioYUbicacion(double salarioMinimo, String ubicacion);
     public List<String[]> buscarOfertasPorUbicacionYContratoConEmpresa( String ubicacion, String tipoContrato);
 }

@@ -35,8 +35,8 @@ public class PostulacionServiceImplement implements IPostulacionService {
     }
 
     @Override
-    public List<Postulacion> buscarPostulacionesPorintervalodedias() {
-        return pR.buscarPostulacionesporintervalo();
+    public List<String[]> buscarPostulacionesPorintervalodedias() {
+        return pR.buscarPostulacionesPorintervalodedias();
     }
 
 
