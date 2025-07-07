@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/habilidades")
+@CrossOrigin(origins = "*")
 public class HabilidadController {
     @Autowired
     private IHabilidadService hS;

@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin(origins = "*")
 public class    UsuarioController {
     @Autowired
     private PasswordEncoder passwordEncoder;

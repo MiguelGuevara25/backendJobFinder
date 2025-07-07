@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import pe.edu.upc.jobfinder.dtos.CantidadCursoPorEmpresaDTO;
 import pe.edu.upc.jobfinder.dtos.CantidadCursosPlataformaDTO;
 import pe.edu.upc.jobfinder.dtos.CursoDTO;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cursos")
+@CrossOrigin(origins = "*")
 @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
 public class CursoController {
     @Autowired
@@ -76,11 +78,16 @@ public class CursoController {
     }
 
     @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
-    @GetMapping("/busquedas")
-    public List<CursoDTO> search(@RequestParam String nombre){
-        return cursoService.searchByNameCourse(nombre).stream().map(h->{
-            ModelMapper m = new ModelMapper();
-            return m.map(h, CursoDTO.class);
-        }).collect(Collectors.toList());
+    @GetMapping("/cantidadporempresas")
+    public List<CantidadCursoPorEmpresaDTO> listarCantidadCursosEmpresa() {
+        List<String[]> filaLista=cursoService.quantityCoursesByEnterprise();
+        List<CantidadCursoPorEmpresaDTO> dtoLista= new ArrayList<>();
+        for (String[] columna:filaLista) {
+            CantidadCursoPorEmpresaDTO dto=new CantidadCursoPorEmpresaDTO();
+            dto.setEmpresa(columna[0]);
+            dto.setTotal(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

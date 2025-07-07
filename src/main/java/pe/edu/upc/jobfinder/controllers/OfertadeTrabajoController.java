@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ofertadetrabajo")
+@CrossOrigin(origins = "*")
 public class OfertadeTrabajoController {
     @Autowired
     private IOfertadeTrabajoService oS;

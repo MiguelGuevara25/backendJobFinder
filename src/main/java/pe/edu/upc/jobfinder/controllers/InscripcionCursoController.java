@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/inscripcioncursos")
+@CrossOrigin(origins = "*")
 public class InscripcionCursoController {
     @Autowired
     private IInscripcionCursoService inscripcionCursoService;

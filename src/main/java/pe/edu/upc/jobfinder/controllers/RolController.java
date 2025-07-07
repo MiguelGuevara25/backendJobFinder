@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/roles")
+@CrossOrigin(origins = "*")
 @PreAuthorize("hasAuthority('ADMIN')")  
 public class RolController {
     @Autowired

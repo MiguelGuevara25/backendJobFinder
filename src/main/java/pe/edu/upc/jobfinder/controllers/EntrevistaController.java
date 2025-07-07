@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/entrevistas")
+@CrossOrigin(origins = "*")
 public class EntrevistaController {
     @Autowired
     private IEntrevistaService eS;

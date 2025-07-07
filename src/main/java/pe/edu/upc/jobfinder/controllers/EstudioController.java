@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/estudios")
+@CrossOrigin(origins = "*")
 public class EstudioController {
     @Autowired
     private IEstudioService eS;

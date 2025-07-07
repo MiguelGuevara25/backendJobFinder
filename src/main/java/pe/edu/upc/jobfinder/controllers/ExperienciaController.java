@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/experiencias")
+@CrossOrigin(origins = "*")
 public class ExperienciaController {
     @Autowired
     private IExperienciaService eS;

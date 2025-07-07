@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/detalles")
+@CrossOrigin(origins = "*")
 public class DetalleController {
     @Autowired
     private IDetalleService dS;

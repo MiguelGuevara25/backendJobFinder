@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/certificados")
+@CrossOrigin(origins = "*")
 public class CertificadoController {
     @Autowired
     private ICertificadoService cS;

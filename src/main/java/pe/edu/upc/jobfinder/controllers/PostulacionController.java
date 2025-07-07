@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/postulacion")
+@CrossOrigin(origins = "*")
 public class PostulacionController {
     @Autowired
     private IPostulacionService pS;

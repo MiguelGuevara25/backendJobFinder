@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/contratos")
+@CrossOrigin(origins = "*")
 public class ContratoController {
     @Autowired
     private IContratoService cS;

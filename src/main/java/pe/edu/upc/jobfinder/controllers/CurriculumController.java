@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/curriculum")
+@CrossOrigin(origins = "*")
 public class CurriculumController {
     @Autowired
     private ICurriculumService curriculumService;

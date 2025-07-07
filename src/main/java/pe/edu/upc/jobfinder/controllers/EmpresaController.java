@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/empresas")
+@CrossOrigin(origins = "*")
 public class EmpresaController {
 
     @Autowired
