@@ -7,10 +7,14 @@ import pe.edu.upc.jobfinder.entities.OfertadeTrabajo;
 import java.util.List;
 public interface IOfertadeTrabajoRepository extends JpaRepository<OfertadeTrabajo, Integer> {
 
-    @Query("SELECT o FROM OfertadeTrabajo o WHERE o.salary >= :salarioMinimo AND o.location = :ubicacion")
-    public List<OfertadeTrabajo> buscarOfertasPorSalarioYUbicacion(@Param("salarioMinimo") double salarioMinimo, @Param("ubicacion") String ubicacion);
-    @Query("SELECT o.name, o.salary, o.typeofcontract, e.name " +
-            "FROM OfertadeTrabajo o JOIN o.empresa e " +
-            "WHERE o.location = :ubicacion AND o.typeofcontract = :tipoContrato")
+    @Query(value = "SELECT o.name,o.salary, o.location AS empresa_name\n" +
+            "FROM ofertade_trabajo o\n" +
+            "JOIN empresa e ON o.id_empresa = e.id\n" +
+            "WHERE o.salary = '3000' AND o.location = 'Lima';", nativeQuery =true)
+    public List<String[]> buscarOfertasPorSalarioYUbicacion(@Param("salarioMinimo") double salarioMinimo, @Param("ubicacion") String ubicacion);
+    @Query(value = "SELECT o.name, o.location, o.typeofcontract AS empresa_name\n" +
+            "FROM ofertade_trabajo o\n" +
+            "JOIN empresa e ON o.id_empresa = e.id\n" +
+            "WHERE o.location = %:ubicacion% AND o.typeofcontract = %:tipocontrato%;",nativeQuery = true)
     public List<String[]> buscarOfertasPorUbicacionYContratoConEmpresa(@Param("ubicacion") String ubicacion, @Param("tipoContrato") String tipoContrato);
 }

@@ -2,6 +2,7 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.*;
 import pe.edu.upc.jobfinder.entities.Contrato;
@@ -19,10 +20,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/entrevistas")
+@CrossOrigin(origins = "*")
 public class EntrevistaController {
     @Autowired
     private IEntrevistaService eS;
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE','ADMIN')")
     @GetMapping
     public List<EntrevistaDTO> listar(){
         return eS.list().stream().map(x->{
@@ -31,6 +34,7 @@ public class EntrevistaController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @PostMapping
     public void insertar(@RequestBody EntrevistaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -38,12 +42,14 @@ public class EntrevistaController {
         eS.insert(e);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping("/{id}")
     public EntrevistaDTO listarId(@PathVariable int id) {
         ModelMapper m = new ModelMapper();
         return m.map(eS.searchId(id), EntrevistaDTO.class);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @PutMapping
     public void modificar(@RequestBody EntrevistaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -51,11 +57,13 @@ public class EntrevistaController {
         eS.update(e);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @DeleteMapping({"/{id}"})
     public void eliminar(@PathVariable int id) {
         eS.delete(id);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping("/cantidades")
     public List<CantidadEntrevistasDTO> cantidadEntrevistas() {
         List<String[]> filaLista=eS.quantityInterview();
@@ -68,6 +76,7 @@ public class EntrevistaController {
         return dtoLista;
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping("/ultimas-30-dias")
     public List<EntrevistaUltimos30DiasDTO> entrevistaUltimos30DiasDTO() {
         List<String[]> filaLista=eS.interviewsLast30Days();

@@ -1,36 +1,34 @@
 package pe.edu.upc.jobfinder.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
 import pe.edu.upc.jobfinder.entities.Usuario;
 
 public class RolDTO {
 
-    private int idRol;
-    private String nombreRol;
-    public Usuario usuarioRol;
+    private int id;
+    private String rol;
+    public Usuario user;
 
-    public int getIdRol() {
-        return idRol;
+    public int getId() {
+        return id;
     }
 
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNombreRol() {
-        return nombreRol;
+    public String getRol() {
+        return rol;
     }
 
-    public void setNombreRol(String nombreRol) {
-        this.nombreRol = nombreRol;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    public Usuario getUsuarioRol() {
-        return usuarioRol;
+    public Usuario getUser() {
+        return user;
     }
 
-    public void setUsuarioRol(Usuario usuarioRol) {
-        this.usuarioRol = usuarioRol;
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 }

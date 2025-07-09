@@ -4,11 +4,8 @@ public class CurriculumPromedioDTO {
     private int id_usuario;
     private String nombre;
     private String apellido;
-    private int totalExperiencia;
-    private int totalEstudios;
-    private int totalHabilidades;
-    private int totalCertificados;
-    private Double puntajeTotal;
+    private Double puntaje_absoluto;
+    private Double porcentaje_perfil;
 
     public int getId_usuario() {
         return id_usuario;
@@ -34,43 +31,19 @@ public class CurriculumPromedioDTO {
         this.apellido = apellido;
     }
 
-    public int getTotalExperiencia() {
-        return totalExperiencia;
+    public Double getPuntaje_absoluto() {
+        return puntaje_absoluto;
     }
 
-    public void setTotalExperiencia(int totalExperiencia) {
-        this.totalExperiencia = totalExperiencia;
+    public void setPuntaje_absoluto(Double puntaje_absoluto) {
+        this.puntaje_absoluto = puntaje_absoluto;
     }
 
-    public int getTotalEstudios() {
-        return totalEstudios;
+    public Double getPorcentaje_perfil() {
+        return porcentaje_perfil;
     }
 
-    public void setTotalEstudios(int totalEstudios) {
-        this.totalEstudios = totalEstudios;
-    }
-
-    public int getTotalHabilidades() {
-        return totalHabilidades;
-    }
-
-    public void setTotalHabilidades(int totalHabilidades) {
-        this.totalHabilidades = totalHabilidades;
-    }
-
-    public int getTotalCertificados() {
-        return totalCertificados;
-    }
-
-    public void setTotalCertificados(int totalCertificados) {
-        this.totalCertificados = totalCertificados;
-    }
-
-    public Double getPuntajeTotal() {
-        return puntajeTotal;
-    }
-
-    public void setPuntajeTotal(Double puntajeTotal) {
-        this.puntajeTotal = puntajeTotal;
+    public void setPorcentaje_perfil(Double porcentaje_perfil) {
+        this.porcentaje_perfil = porcentaje_perfil;
     }
 }

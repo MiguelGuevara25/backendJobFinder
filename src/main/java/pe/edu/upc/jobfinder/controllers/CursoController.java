@@ -2,11 +2,11 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import pe.edu.upc.jobfinder.dtos.CantidadCursoPorEmpresaDTO;
 import pe.edu.upc.jobfinder.dtos.CantidadCursosPlataformaDTO;
-import pe.edu.upc.jobfinder.dtos.CantidadCursosPorEmpresaDTO;
-import pe.edu.upc.jobfinder.dtos.ContratoDTO;
 import pe.edu.upc.jobfinder.dtos.CursoDTO;
 
 import pe.edu.upc.jobfinder.entities.Curso;
@@ -19,9 +19,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cursos")
+@CrossOrigin(origins = "*")
+@PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
 public class CursoController {
     @Autowired
     private ICursoService cursoService;
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping
     public List<CursoDTO> listar() {
         return cursoService.listar().stream().map(x->{
@@ -29,28 +33,37 @@ public class CursoController {
             return m.map(x,CursoDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @PostMapping()
     public void insertar(@RequestBody CursoDTO cursoDTO) {
         ModelMapper m= new ModelMapper();
         Curso c=m.map(cursoDTO,Curso.class);
         cursoService.insertar(c);
     }
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping("/{id}")
     public CursoDTO listarId(@PathVariable int id) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(cursoService.searchId(id), CursoDTO.class);
     }
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @PutMapping()
     public void modificar(@RequestBody CursoDTO cursoDTO) {
         ModelMapper m= new ModelMapper();
         Curso c=m.map(cursoDTO,Curso.class);
         cursoService.modificar(c);
     }
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int idC) {
         cursoService.eliminar(idC);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping("/cantidades")
     public List<CantidadCursosPlataformaDTO> listarCantidadCursosPlataforma() {
         List<String[]> filaLista=cursoService.quantityCoursesByPlatform();
@@ -64,14 +77,15 @@ public class CursoController {
         return dtoLista;
     }
 
-    @GetMapping("/cantidadesempresas")
-    public List<CantidadCursosPorEmpresaDTO> listarCantidadCursosEmpresa() {
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
+    @GetMapping("/cantidadporempresas")
+    public List<CantidadCursoPorEmpresaDTO> listarCantidadCursosEmpresa() {
         List<String[]> filaLista=cursoService.quantityCoursesByEnterprise();
-        List<CantidadCursosPorEmpresaDTO> dtoLista= new ArrayList<>();
+        List<CantidadCursoPorEmpresaDTO> dtoLista= new ArrayList<>();
         for (String[] columna:filaLista) {
-            CantidadCursosPorEmpresaDTO dto=new CantidadCursosPorEmpresaDTO();
+            CantidadCursoPorEmpresaDTO dto=new CantidadCursoPorEmpresaDTO();
             dto.setEmpresa(columna[0]);
-            dto.setTotalCursos(Integer.parseInt(columna[1]));
+            dto.setTotal(Integer.parseInt(columna[1]));
             dtoLista.add(dto);
         }
         return dtoLista;

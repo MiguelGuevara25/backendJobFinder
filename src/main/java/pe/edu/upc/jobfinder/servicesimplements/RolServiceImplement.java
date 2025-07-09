@@ -20,7 +20,7 @@ public class RolServiceImplement implements IRolService {
 
     @Override
     public void insertar(Rol rol) {
-        rolRepository.save(rol);
+         rolRepository.save(rol);
     }
 
     @Override

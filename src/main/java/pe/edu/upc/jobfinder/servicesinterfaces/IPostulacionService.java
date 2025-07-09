@@ -1,6 +1,7 @@
 package pe.edu.upc.jobfinder.servicesinterfaces;
 
 
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.jobfinder.entities.Postulacion;
 
 import java.util.List;
@@ -11,5 +12,6 @@ public interface IPostulacionService {
         public Postulacion searchId(int id);
         public void update(Postulacion Postulacion);
         public void delete(int id);
-        public List<Postulacion> search (String name);
+        public List<String[]> contarPostulacionesPorEstado(Boolean aceptado, Boolean rechazado);
+        public List<String[]> buscarPostulacionesPorintervalodedias();
 }

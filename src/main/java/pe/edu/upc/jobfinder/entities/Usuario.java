@@ -43,7 +43,7 @@ public class Usuario implements Serializable {
     @Column(name = "edad", nullable = false, length = 250)
     private int edadUsuario;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<Rol> roles;
 

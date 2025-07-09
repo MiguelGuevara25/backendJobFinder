@@ -1,10 +1,9 @@
 package pe.edu.upc.jobfinder.dtos;
 
-import pe.edu.upc.jobfinder.entities.Usuario;
-
 public class RolesDeUsuarioDTO {
     private String nombreRol;
     public int idUsuario;
+    private String nombreUsuario;
 
     public String getNombreRol() {
         return nombreRol;
@@ -20,5 +19,13 @@ public class RolesDeUsuarioDTO {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 }

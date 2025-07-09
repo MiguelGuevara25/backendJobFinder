@@ -2,6 +2,7 @@ package pe.edu.upc.jobfinder.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.FrecuenciaHabilidadDTO;
 import pe.edu.upc.jobfinder.dtos.HabilidaVaciaDTO;
@@ -15,10 +16,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/habilidades")
+@CrossOrigin(origins = "*")
 public class HabilidadController {
     @Autowired
     private IHabilidadService hS;
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping
     public List<HabilidadDTO> listar() {
         return hS.list().stream().map(x -> {
@@ -27,6 +30,7 @@ public class HabilidadController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE')")
     @PostMapping
     public void insertar(@RequestBody HabilidadDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -34,6 +38,7 @@ public class HabilidadController {
         hS.insert(h);
     }
 
+    @PreAuthorize("hasAnyAuthority('EMPRESA','POSTULANTE','ADMIN')")
     @GetMapping("/{id}")
     public HabilidadDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
@@ -41,6 +46,7 @@ public class HabilidadController {
         return dto;
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE')")
     @PutMapping
     public void modificar(@RequestBody HabilidadDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -48,11 +54,13 @@ public class HabilidadController {
         hS.update(h);
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         hS.delete(id);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/frecuencia_por_usuario")
     public List<FrecuenciaHabilidadDTO> listarFrecuenciaPorUsuario() {
         List<String[]> filaLista=hS.frecuencia_habilidad();
@@ -66,13 +74,15 @@ public class HabilidadController {
         return dtoLista;
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/habilidad_nulas")
     public List<HabilidaVaciaDTO> habilidadVacia() {
-        List<String[]> filaLista=hS.habilidad_sin_usuarios();
-        List<HabilidaVaciaDTO> dtoLista =new ArrayList<>();
-        for (String[] columna: filaLista) {
+        List<String[]> filaLista = hS.habilidad_sin_usuarios();
+        List<HabilidaVaciaDTO> dtoLista = new ArrayList<>();
+        for (String[] columna : filaLista) {
             HabilidaVaciaDTO dto = new HabilidaVaciaDTO();
-            dto.setNombre(columna[0]);
+            dto.setId_habilidad(Integer.parseInt(columna[0]));
+            dto.setNombre(columna[1]);
             dtoLista.add(dto);
         }
         return dtoLista;

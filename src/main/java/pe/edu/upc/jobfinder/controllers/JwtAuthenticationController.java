@@ -17,7 +17,7 @@ import pe.edu.upc.jobfinder.securities.JwtTokenUtil;
 import pe.edu.upc.jobfinder.servicesimplements.JwtUserDetailsService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class JwtAuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;

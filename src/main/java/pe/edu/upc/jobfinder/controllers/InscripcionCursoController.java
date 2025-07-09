@@ -16,9 +16,12 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/inscripcioncursos")
 @PreAuthorize("hasAuthority('POSTULANTE')")
+@CrossOrigin(origins = "*")
 public class InscripcionCursoController {
     @Autowired
     private IInscripcionCursoService inscripcionCursoService;
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping
     public List<InscripcionCursoDTO> listar() {
         return inscripcionCursoService.listar().stream().map(x->{
@@ -27,24 +30,30 @@ public class InscripcionCursoController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('POSTULANTE','ADMIN')")
     @PostMapping()
-    @PreAuthorize("hasAuthority('POSTULANTE')")
     public void insertar(@RequestBody InscripcionCursoDTO inscripcionCursoDTO) {
         ModelMapper m= new ModelMapper();
         InscripcionCurso iC=m.map(inscripcionCursoDTO,InscripcionCurso.class);
         inscripcionCursoService.insertar(iC);
     }
+
+    @PreAuthorize("hasAnyAuthority('EMPRESA','ADMIN')")
     @GetMapping("/{id}")
     public InscripcionCursoDTO listarId(@PathVariable int id) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(inscripcionCursoService.searchId(id), InscripcionCursoDTO.class);
     }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PutMapping()
     public void modificar(@RequestBody InscripcionCursoDTO inscripcionCursoDTO) {
         ModelMapper m= new ModelMapper();
         InscripcionCurso iC=m.map(inscripcionCursoDTO,InscripcionCurso.class);
         inscripcionCursoService.modificar(iC);
     }
+
+    @PreAuthorize("hasAnyAuthority('POSTULANTE','ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int idIC) {
         inscripcionCursoService.eliminar(idIC);
@@ -63,6 +72,7 @@ public class InscripcionCursoController {
         return dtoLista;
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/promedios")
     public List<PromedioCursosDTO> promedioCursos() {
         List<String[]> filaLista=inscripcionCursoService.promedioDeCursos();

@@ -12,10 +12,10 @@ public interface ICursoRepository extends JpaRepository<Curso, Integer> {
             " FROM curso\n" +
             " GROUP BY plataforma_curso;",nativeQuery = true)
     public List<String[]> quantityCoursesByPlatform();
-    @Query(value = "SELECT e.namecompany AS empresa, COUNT(c.id_curso) AS total_cursos\n" +
-            "FROM empresa e\n" +
-            "LEFT JOIN curso c ON e.id = c.id_empresa\n" +
-            "GROUP BY e.namecompany\n" +
-            "ORDER BY total_cursos DESC;",nativeQuery = true)
+
+    @Query(value = "SELECT e.nameCompany AS empresa, COUNT(c.id_curso) AS totalCursos\n" +
+            "FROM curso c\n" +
+            "JOIN empresa e ON c.id_empresa = e.id\n" +
+            "GROUP BY e.nameCompany;",nativeQuery = true)
     public List<String[]> quantityCoursesByEnterprise();
 }

@@ -7,7 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.jobfinder.dtos.RolDTO;
 import pe.edu.upc.jobfinder.dtos.RolesDeUsuarioDTO;
-import pe.edu.upc.jobfinder.dtos.RolesPromYcantDTO;
 import pe.edu.upc.jobfinder.entities.Rol;
 import pe.edu.upc.jobfinder.servicesinterfaces.IRolService;
 
@@ -17,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/roles")
+@CrossOrigin(origins = "*")
 @PreAuthorize("hasAuthority('ADMIN')")  
 public class RolController {
     @Autowired
@@ -61,7 +61,8 @@ public class RolController {
         for(String[] columna:filaLista){
             RolesDeUsuarioDTO dto=new RolesDeUsuarioDTO();
             dto.setIdUsuario(Integer.parseInt(columna[0]));
-            dto.setNombreRol(columna[1]);
+            dto.setNombreUsuario(columna[1]);
+            dto.setNombreRol(columna[2]);
             dtoLista.add(dto);
         }
         return dtoLista;

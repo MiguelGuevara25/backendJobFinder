@@ -28,9 +28,13 @@ public class OfertadeTrabajoServiceImplement implements IOfertadeTrabajoService 
     @Override
     public void delete(int id) {oR.deleteById(id);}
 
+
     @Override
-    public List<OfertadeTrabajo> search(String name) {
-        return List.of();
-    }
+    public List<String[]> buscarOfertasPorSalarioYUbicacion(double salarioMinimo, String ubicacion)
+    {return oR.buscarOfertasPorSalarioYUbicacion(salarioMinimo, ubicacion);}
+
+    @Override
+    public List<String[]> buscarOfertasPorUbicacionYContratoConEmpresa(String ubicacion, String tipoContrato)
+        {return oR.buscarOfertasPorUbicacionYContratoConEmpresa(ubicacion,tipoContrato);}
 }
 
