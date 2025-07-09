@@ -70,11 +70,8 @@ public class CurriculumController {
             dto.setId_usuario(Integer.parseInt(columna[0]));
             dto.setNombre(columna[1]);
             dto.setApellido(columna[2]);
-            dto.setTotalExperiencia(Integer.parseInt(columna[3]));
-            dto.setTotalEstudios(Integer.parseInt(columna[4]));
-            dto.setTotalHabilidades(Integer.parseInt(columna[5]));
-            dto.setTotalCertificados(Integer.parseInt(columna[6]));
-            dto.setPuntajeTotal(Double.parseDouble(columna[7]));
+            dto.setPuntaje_absoluto(Double.parseDouble(columna[3]));
+            dto.setPorcentaje_perfil(Double.parseDouble(columna[4]));
             dtoListaa.add(dto);
         }
         return dtoListaa;

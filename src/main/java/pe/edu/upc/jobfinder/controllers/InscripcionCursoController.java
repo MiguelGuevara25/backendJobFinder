@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/inscripcioncursos")
+@PreAuthorize("hasAuthority('POSTULANTE')")
 @CrossOrigin(origins = "*")
 public class InscripcionCursoController {
     @Autowired

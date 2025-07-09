@@ -21,9 +21,9 @@ public interface IHabilidadRepository extends JpaRepository<Habilidad, Integer> 
 
     //1. Este query busca todas las habilidades que nadie ha usado.
     //2. Te ayuda a limpiar o depurar tu base de datos (¿para qué guardar habilidades que nadie usa?).
-    @Query(value = "SELECT h.nombre \n" +
+    @Query(value = "SELECT h.id_habilidad, h.nombre\n" +
             "FROM habilidad h\n" +
-            "LEFT JOIN detalle d on h.id_habilidad = d.id_habilidad\n" +
+            "LEFT JOIN detalle d ON h.id_habilidad = d.id_habilidad\n" +
             "WHERE d.id_habilidad IS NULL;", nativeQuery = true)
     public List<String[]> habilidad_sin_usuarios();
 }

@@ -46,4 +46,6 @@ public class CursoServiceImplement implements ICursoService {
     public List<String[]> quantityCoursesByEnterprise() {
         return ceR.quantityCoursesByEnterprise();
     }
+
+
 }

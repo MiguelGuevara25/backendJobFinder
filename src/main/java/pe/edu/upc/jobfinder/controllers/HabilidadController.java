@@ -77,11 +77,12 @@ public class HabilidadController {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/habilidad_nulas")
     public List<HabilidaVaciaDTO> habilidadVacia() {
-        List<String[]> filaLista=hS.habilidad_sin_usuarios();
-        List<HabilidaVaciaDTO> dtoLista =new ArrayList<>();
-        for (String[] columna: filaLista) {
+        List<String[]> filaLista = hS.habilidad_sin_usuarios();
+        List<HabilidaVaciaDTO> dtoLista = new ArrayList<>();
+        for (String[] columna : filaLista) {
             HabilidaVaciaDTO dto = new HabilidaVaciaDTO();
-            dto.setNombre(columna[0]);
+            dto.setId_habilidad(Integer.parseInt(columna[0]));
+            dto.setNombre(columna[1]);
             dtoLista.add(dto);
         }
         return dtoLista;
